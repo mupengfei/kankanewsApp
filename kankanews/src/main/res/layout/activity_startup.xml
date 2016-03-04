@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.StartUpActivity" >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_startup_activity" />
+
+    <ImageView
+        android:id="@+id/ad_pic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="120dp"
+        android:scaleType="fitXY" />
+
+    <ImageView
+        android:id="@+id/app_info_text_img"
+        android:layout_width="245dip"
+        android:layout_height="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="30dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_app_info" />
+
+    <ImageView
+        android:id="@+id/welcome_logo_img"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_above="@+id/app_info_text_img"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/ic_logo" />
+
+    <ImageView
+        android:id="@+id/welcome_logo_text_img"
+        android:layout_width="108dip"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="53dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/welcome_logo_img"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_app_name" />
+
+</RelativeLayout>
