@@ -1,1 +1,1 @@
-include ':kankanews'
+include ':kankanews', ':ijkmediaplayer'
