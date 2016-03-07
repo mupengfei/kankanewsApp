@@ -1,5 +1,9 @@
 <resources>
     <dimen name="title_bar_height">44dip</dimen>
+    <dimen name="separation_line_height">1px</dimen>
+    <dimen name="base_action_bar_height">44dip</dimen>
+    <dimen name="bottom_bar_real_height">54dip</dimen>
+    <dimen name="margin_base_space">12.5dp</dimen>
 
     <!-- 日历 -->
     <dimen name="padding_10dp">10dp</dimen>

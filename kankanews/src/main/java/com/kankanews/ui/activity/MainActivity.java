@@ -26,6 +26,13 @@ import com.kankanews.base.BaseActivity;
 import com.kankanews.base.BaseFragment;
 import com.kankanews.config.AndroidConfig;
 import com.kankanews.kankanxinwen.R;
+import com.kankanews.ui.fragment.LiveHomeFragment;
+import com.kankanews.ui.fragment.New_RevelationsFragment;
+import com.kankanews.ui.fragment.NewsHomeFragment;
+import com.kankanews.ui.popup.RevelationsChoiceBoard;
+import com.kankanews.utils.ClickUtils;
+import com.kankanews.utils.PixelUtil;
+import com.kankanews.utils.TimeUtil;
 import com.umeng.update.UmengUpdateAgent;
 
 import org.json.JSONObject;
@@ -62,10 +69,10 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
     private List<RelativeLayout> tabArray = new ArrayList<RelativeLayout>();
     ;
-    private int[] nomalImg = {R.drawable.tab_home_nomal,
-            R.drawable.tab_revelate_nomal, R.drawable.tab_live_nomal};
-    private int[] touchImg = {R.drawable.tab_home_touch,
-            R.drawable.tab_revelate_touch, R.drawable.tab_live_touch};
+    private int[] nomalImg = {R.drawable.ic_tab_main_nomal,
+            R.drawable.ic_tab_revelate_nomal, R.drawable.ic_tab_live_nomal};
+    private int[] touchImg = {R.drawable.ic_tab_main_touch,
+            R.drawable.ic_tab_revelate_touch, R.drawable.ic_tab_live_touch};
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -74,13 +81,11 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
     @Override
     protected void onRestart() {
-        // TODO Auto-generated method stub
         super.onRestart();
     }
 
     @Override
     protected void onStart() {
-        // TODO Auto-generated method stub
         super.onStart();
     }
 
@@ -103,7 +108,6 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                         touchTab(tabLive);
                     }
                 }, 500);
-
             }
         }
     }
@@ -112,7 +116,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        spUtil.setFristComing(false);
+        mSpUtils.setFristComing(false);
         this.mApplication.setMainActivity(this);
 
         wm = (WindowManager) getApplicationContext().getSystemService(
@@ -191,8 +195,6 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
         screenGuide = (ImageView) findViewById(R.id.full_screen_guide);
 
-        nightView = findViewById(R.id.night_view);
-
         // 初始化fragments
         NewsHomeFragment mainFragment = new NewsHomeFragment();
         LiveHomeFragment liveFragment = new LiveHomeFragment();
@@ -212,18 +214,15 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
     @Override
     protected void setListener() {
-        // TODO Auto-generated method stub
         screenGuide.setOnClickListener(this);
     }
 
     @Override
-    protected void onSuccess(JSONObject jsonObject) {
-        // TODO Auto-generated method stub
+    protected void onSuccessResponse(JSONObject jsonObject) {
     }
 
     @Override
-    protected void onFailure(VolleyError error) {
-        // TODO Auto-generated method stub
+    protected void onErrorResponse(VolleyError error) {
     }
 
     public void touchTab(View v) {
@@ -243,7 +242,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         }
         if (id == R.id.tab_home) {
             // TODO
-            if (spUtil.getFirstGetColumns()) {
+            if (mSpUtils.getFirstGetColumns()) {
                 screenGuide
                         .setBackgroundResource(R.drawable.screen_guide_columns);
                 screenGuide.setVisibility(View.VISIBLE);
@@ -251,7 +250,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
             }
         }
         if (id == R.id.tab_revelate) {
-            if (spUtil.getFirstGetRevalations()) {
+            if (mSpUtils.getFirstGetRevalations()) {
                 screenGuide
                         .setBackgroundResource(R.drawable.screen_guide_revelations);
                 screenGuide.setVisibility(View.VISIBLE);
@@ -353,10 +352,10 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                     ViewGroup.LayoutParams params = tabView.getLayoutParams();
                     params.height = (int) realHeight;
                     tabView.setLayoutParams(params);
-                    tabView.setBackgroundResource(R.drawable.tab_home_middle_item_border_selected);
+                    tabView.setBackgroundResource(R.drawable.bd_tab_home_middle_item_selected);
 
                 } else {
-                    tabView.setBackgroundResource(R.drawable.tab_home_left_right_item_border_selected);
+                    tabView.setBackgroundResource(R.drawable.bd_tab_home_left_right_item_selected);
                 }
             } else {
                 tab_img.setImageResource(nomalImg[i]);
@@ -373,16 +372,12 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                     ViewGroup.LayoutParams params = tabView.getLayoutParams();
                     params.height = (int) realHeight;
                     tabView.setLayoutParams(params);
-                    tabView.setBackgroundResource(R.drawable.tab_home_left_right_item_border);
+                    tabView.setBackgroundResource(R.drawable.bd_tab_home_left_right_item);
                 } else {
-                    tabView.setBackgroundResource(R.drawable.tab_home_left_right_item_border);
+                    tabView.setBackgroundResource(R.drawable.bd_tab_home_left_right_item);
                 }
             }
         }
-    }
-
-    public SlidingMenu getSide_drawer() {
-        return side_drawer;
     }
 
     @Override
@@ -403,17 +398,17 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
         if (resultCode == AndroidConfig.REVELATIONS_FRAGMENT_RESULT_CANCEL
                 || resultCode == AndroidConfig.REVELATIONS_FRAGMENT_RESULT_OK) {
-            New_RevelationsFragment fragment = (New_RevelationsFragment) fragments
+            RevelationsFragment fragment = (RevelationsFragment) fragments
                     .get(tabRevelate);
             fragment.onActivityResult(requestCode, resultCode, data);
         }
-        if (this.shareUtil != null) {
-            UMSsoHandler ssoHandler = this.shareUtil.getmController()
-                    .getConfig().getSsoHandler(requestCode);
-            if (ssoHandler != null) {
-                ssoHandler.authorizeCallBack(requestCode, resultCode, data);
-            }
-        }
+//        if (this.shareUtil != null) {
+//            UMSsoHandler ssoHandler = this.shareUtil.getmController()
+//                    .getConfig().getSsoHandler(requestCode);
+//            if (ssoHandler != null) {
+//                ssoHandler.authorizeCallBack(requestCode, resultCode, data);
+//            }
+//        }
     }
 
     private BroadcastReceiver mHomeKeyEventReceiver = new BroadcastReceiver() {
@@ -476,12 +471,12 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         super.finishNoRemove();
     }
 
-    @Override
-    public void netChanged() {
-        // TODO Auto-generated method stub
-        if (curTouchTab == tabLive)
-            ((LiveHomeFragment) fragments.get(tabLive)).netChange();
-    }
+//    @Override
+//    public void netChanged() {
+//        // TODO Auto-generated method stub
+//        if (curTouchTab == tabLive)
+//            ((LiveHomeFragment) fragments.get(tabLive)).netChange();
+//    }
 
     @Override
     public void onClick(View v) {
@@ -491,9 +486,9 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                 screenGuide.setVisibility(View.GONE);
                 String tag = (String) screenGuide.getTag();
                 if (tag.equals("COLUMNS"))
-                    spUtil.setFirstGetColumns(false);
+                    mSpUtils.setFirstGetColumns(false);
                 else
-                    spUtil.setFirstGetRevalations(false);
+                    mSpUtils.setFirstGetRevalations(false);
                 break;
             default:
                 break;

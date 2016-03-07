@@ -218,4 +218,14 @@ public class BaseContentActivity extends BaseActivity implements
     public void copy2Clip() {
 
     }
+
+    protected boolean initLocalData() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    protected void saveLocalDate() {
+        // TODO Auto-generated method stub
+
+    }
 }
