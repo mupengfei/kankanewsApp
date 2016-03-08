@@ -440,7 +440,7 @@ public class RevelationsFragment extends BaseFragment implements
                         .getActivity().get(position).getTitle());
                 FontUtils.setTextViewFontSize(RevelationsFragment.this,
                         topHolder.activityTitle, R.string.home_news_text_size,
-                        mSpUtil.getFontSizeRadix());
+                        mSpUtils.getFontSizeRadix());
             } else if (itemViewType == 1) {
                 final int breakLocation = position
                         - (revelationsHomeList.getActivity().size() > 0 ? 1 : 0);
@@ -492,7 +492,7 @@ public class RevelationsFragment extends BaseFragment implements
                         .getNewstext()));
                 FontUtils.setTextViewFontSize(RevelationsFragment.this,
                         newsHolder.newsText, R.string.home_news_text_size,
-                        mSpUtil.getFontSizeRadix());
+                        mSpUtils.getFontSizeRadix());
                 newsHolder.allNewsTextBut.setTag(newsHolder.newsText);
                 newsHolder.newsText.setTag(newsHolder.allNewsTextBut);
                 newsHolder.newsText
@@ -894,7 +894,7 @@ public class RevelationsFragment extends BaseFragment implements
             FontUtils.setTextViewFontSize(RevelationsFragment.this,
                     aboutReportHolder.newsTitile,
                     R.string.revelations_aboutreport_news_text_size,
-                    mSpUtil.getFontSizeRadix());
+                    mSpUtils.getFontSizeRadix());
             convertView.setOnClickListener(new OnClickListener() {
 
                 @Override

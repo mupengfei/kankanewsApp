@@ -19,7 +19,7 @@
         android:orientation="horizontal"
         android:paddingLeft="@dimen/margin_base_space" >
 
-        <com.kankan.kankanews.ui.view.MyTextView
+        <com.kankanews.ui.view.TfTextView
             android:id="@+id/revelations_activity_title"
             android:layout_width="0dip"
             android:layout_height="wrap_content"

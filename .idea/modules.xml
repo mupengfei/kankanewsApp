@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Kankanews.iml" filepath="$PROJECT_DIR$/Kankanews.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ToggleButtonLib/ToggleButtonLib.iml" filepath="$PROJECT_DIR$/ToggleButtonLib/ToggleButtonLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/ijkmediaplayer/ijkmediaplayer.iml" filepath="$PROJECT_DIR$/ijkmediaplayer/ijkmediaplayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ijkmediawidget/ijkmediawidget.iml" filepath="$PROJECT_DIR$/ijkmediawidget/ijkmediawidget.iml" />
       <module fileurl="file://$PROJECT_DIR$/kankanews/kankanews.iml" filepath="$PROJECT_DIR$/kankanews/kankanews.iml" />
     </modules>
   </component>

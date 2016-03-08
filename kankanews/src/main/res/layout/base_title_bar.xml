@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/title_bar_view"
         style="@style/ActionBar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/base_action_bar_height" >
+        android:layout_height="@dimen/base_action_bar_height">
 
         <ImageView
             android:id="@+id/title_bar_left_img"
@@ -28,7 +28,7 @@
             android:padding="8dip"
             android:visibility="gone" />
 
-        <com.kankan.kankanews.ui.view.MyTextView
+        <com.kankanews.ui.view.TfTextView
             android:id="@+id/title_bar_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@id/title_bar_right_img"
-            android:layout_toRightOf="@id/title_bar_content_img" >
+            android:layout_toRightOf="@id/title_bar_content_img">
 
             <ImageView
                 android:id="@+id/title_bar_right_second_img"
@@ -68,7 +68,7 @@
                 android:layout_centerVertical="true" />
         </RelativeLayout>
 
-        <com.kankan.kankanews.ui.view.MyTextView
+        <com.kankanews.ui.view.TfTextView
             android:id="@+id/title_bar_right_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,8 +78,7 @@
             android:paddingLeft="10dip"
             android:paddingRight="10dip"
             android:textColor="#000000"
-            android:textSize="15dp" >
-        </com.kankan.kankanews.ui.view.MyTextView>
+            android:textSize="15dp"></com.kankanews.ui.view.TfTextView>
     </RelativeLayout>
 
 </LinearLayout>

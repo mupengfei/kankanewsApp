@@ -1,33 +1,30 @@
 package com.kankanews.ui.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.json.JSONObject;
-
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
-import com.kankan.kankanews.base.BaseActivity;
-import com.kankan.kankanews.photoview.PhotoView;
-import com.kankan.kankanews.photoview.PhotoViewAttacher;
-import com.kankan.kankanews.photoview.PhotoViewAttacher.OnPhotoTapListener;
-import com.kankan.kankanews.photoview.PhotoViewAttacher.OnViewTapListener;
-import com.kankan.kankanews.utils.CommonUtils;
-import com.kankan.kankanews.utils.DebugLog;
-import com.kankan.kankanews.utils.ImgUtils;
-import com.kankan.kankanews.utils.PixelUtil;
+import com.kankanews.base.BaseContentActivity;
 import com.kankanews.kankanxinwen.R;
+import com.kankanews.ui.view.photoview.PhotoView;
+import com.kankanews.ui.view.photoview.PhotoViewAttacher;
+import com.kankanews.utils.CommonUtils;
+import com.kankanews.utils.ImgUtils;
+import com.kankanews.utils.PixelUtil;
 
-public class PhotoViewActivity extends BaseActivity implements OnClickListener,
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PhotoViewActivity extends BaseContentActivity implements OnClickListener,
 		OnPageChangeListener {
 	private String[] imageGroup;
 	private List<View> imagePointViews;
@@ -123,7 +120,7 @@ public class PhotoViewActivity extends BaseActivity implements OnClickListener,
 		public Object instantiateItem(ViewGroup container, int position) {
 			String picUrl = CommonUtils.doWebpUrl(imageGroup[position]);
 			View view = getLayoutInflater().inflate(
-					R.layout.new_item_activity_picset, null);
+					R.layout.item_picset, null);
 			final PhotoView photoView = (PhotoView) view
 					.findViewById(R.id.img_photo_view);
 			ImgUtils.imageLoader.displayImage(picUrl, photoView,
@@ -135,7 +132,7 @@ public class PhotoViewActivity extends BaseActivity implements OnClickListener,
 			// DebugLog.e("单击");
 			// }
 			// });
-			photoView.setOnPhotoTapListener(new OnPhotoTapListener() {
+			photoView.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
 
 				@Override
 				public void onPhotoTap(View view, float x, float y) {
@@ -158,12 +155,12 @@ public class PhotoViewActivity extends BaseActivity implements OnClickListener,
 	}
 
 	@Override
-	protected void onSuccess(JSONObject jsonObject) {
+	protected void onSuccessResponse(JSONObject jsonObject) {
 
 	}
 
 	@Override
-	protected void onFailure(VolleyError error) {
+	protected void onErrorResponse(VolleyError error) {
 
 	}
 

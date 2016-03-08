@@ -200,7 +200,7 @@ public class StartupActivity extends BaseActivity {
         if (bundle != null && bundle.containsKey("PUSH_NEWS_ID")) {
             mHandler.sendEmptyMessageDelayed(GO_TRANS, SPLASH_DELAY_MILLIS);
         } else {
-            // if (isFirstIn || !version.equals(mSpUtil.getVersion())) {
+            // if (isFirstIn || !version.equals(mSpUtils.getVersion())) {
             // 使用Handler的postDelayed方法，2秒后执行跳转到MainActivity
             // mHandler.sendEmptyMessageDelayed(GO_GUIDE, SPLASH_DELAY_MILLIS);
             // } else {
@@ -218,11 +218,11 @@ public class StartupActivity extends BaseActivity {
             if (liveId != null && !liveId.trim().equals(""))
                 intent.putExtra("LIVE_ID", liveId);
         }
-//        intent.setClass(SplashActivity.this, MainActivity.class);
+        intent.setClass(StartupActivity.this, MainActivity.class);
         // intent.setClass(SplashActivity.this, NewsContentActivity.class);
-//        SplashActivity.this.startActivity(intent);
-        // overridePendingTransition(R.anim.alpha, R.anim.alpha_op);
-//        SplashActivity.this.finish();
+        StartupActivity.this.startActivity(intent);
+//         overridePendingTransition(R.anim.alpha, R.anim.alpha_op);
+        StartupActivity.this.finish();
     }
 
     private void goTrasition() {
@@ -316,7 +316,7 @@ public class StartupActivity extends BaseActivity {
                             if (key.equalsIgnoreCase("liveid"))
                                 intent.putExtra("LIVE_ID", value);
                             // if (isFirstIn
-                            // || !version.equals(mSpUtil.getVersion())) {
+                            // || !version.equals(mSpUtils.getVersion())) {
                             // 使用Handler的postDelayed方法，2秒后执行跳转到MainActivity
                             // goGuide();
                             // goHome();
@@ -357,7 +357,7 @@ public class StartupActivity extends BaseActivity {
             if (bundle != null && bundle.containsKey("PUSH_NEWS_ID")) {
                 return;
             }
-            // if (isFirstIn || !version.equals(mSpUtil.getVersion())) {
+            // if (isFirstIn || !version.equals(mSpUtils.getVersion())) {
             // 使用Handler的postDelayed方法，2秒后执行跳转到MainActivity
             // mHandler.sendEmptyMessageDelayed(AD_GO_GUIDE,
             // AD_NO_DELAY_MILLIS);
@@ -379,7 +379,7 @@ public class StartupActivity extends BaseActivity {
         if (bundle != null && bundle.containsKey("PUSH_NEWS_ID")) {
             return;
         }
-        // if (isFirstIn || !version.equals(mSpUtil.getVersion())) {
+        // if (isFirstIn || !version.equals(mSpUtils.getVersion())) {
         // 使用Handler的postDelayed方法，2秒后执行跳转到MainActivity
         // mHandler.sendEmptyMessageDelayed(AD_GO_GUIDE, AD_HAS_DELAY_MILLIS);
         // } else {

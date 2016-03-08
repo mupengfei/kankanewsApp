@@ -23,6 +23,7 @@ import com.iss.view.pulltorefresh.PullToRefreshListView;
 import com.kankanews.base.BaseFragment;
 import com.kankanews.bean.LiveChannelList;
 import com.kankanews.bean.LiveChannelObj;
+import com.kankanews.kankanxinwen.R;
 import com.kankanews.ui.popup.InfoMsgHint;
 import com.kankanews.ui.view.TfTextView;
 import com.kankanews.utils.CommonUtils;

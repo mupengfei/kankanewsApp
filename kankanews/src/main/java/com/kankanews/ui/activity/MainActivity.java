@@ -27,8 +27,8 @@ import com.kankanews.base.BaseFragment;
 import com.kankanews.config.AndroidConfig;
 import com.kankanews.kankanxinwen.R;
 import com.kankanews.ui.fragment.LiveHomeFragment;
-import com.kankanews.ui.fragment.New_RevelationsFragment;
 import com.kankanews.ui.fragment.NewsHomeFragment;
+import com.kankanews.ui.fragment.RevelationsFragment;
 import com.kankanews.ui.popup.RevelationsChoiceBoard;
 import com.kankanews.utils.ClickUtils;
 import com.kankanews.utils.PixelUtil;
@@ -200,7 +200,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         LiveHomeFragment liveFragment = new LiveHomeFragment();
         // New_ColumsFragment columFragment = new New_ColumsFragment();
         // New_MyFragment setFragment = new New_MyFragment();
-        New_RevelationsFragment reveFragment = new New_RevelationsFragment();
+        RevelationsFragment reveFragment = new RevelationsFragment();
         fragments.put(tabHome, mainFragment);
         fragments.put(tabRevelate, reveFragment);
         fragments.put(tabLive, liveFragment);

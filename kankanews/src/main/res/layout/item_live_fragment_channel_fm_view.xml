@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white_no_alpha"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,9 +13,9 @@
         android:layout_marginBottom="@dimen/margin_base_space"
         android:layout_marginTop="@dimen/margin_base_space"
         android:paddingLeft="@dimen/margin_base_space"
-        android:paddingRight="@dimen/margin_base_space" >
+        android:paddingRight="@dimen/margin_base_space">
 
-        <com.kankan.kankanews.ui.view.CircleImageView
+        <com.kankanews.ui.view.CircleImageView
             android:id="@+id/live_channel_list_fm_titlepic"
             android:layout_width="55dip"
             android:layout_height="55dip"
@@ -38,9 +38,9 @@
             android:layout_marginLeft="@dimen/margin_base_space"
             android:layout_marginRight="43dip"
             android:layout_toRightOf="@+id/live_channel_list_fm_titlepic"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
-            <com.kankan.kankanews.ui.view.MyTextView
+            <com.kankanews.ui.view.TfTextView
                 android:id="@+id/live_channel_list_fm_livetitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
                 android:textSize="18dip"
                 android:textStyle="bold" />
 
-            <com.kankan.kankanews.ui.view.MyTextView
+            <com.kankanews.ui.view.TfTextView
                 android:id="@+id/live_channel_list_fm_next_info"
                 android:layout_width="match_parent"
                 android:layout_height="20dip"
@@ -69,12 +69,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/margin_base_space"
-        android:paddingRight="@dimen/margin_base_space" >
+        android:paddingRight="@dimen/margin_base_space">
 
-        <include
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/separation_line_height"
             android:layout_marginLeft="@dimen/margin_base_space"
             android:layout_marginRight="@dimen/margin_base_space"
-            layout="@layout/base_line" />
+            android:background="@color/bright_gray" />
     </RelativeLayout>
 
 </LinearLayout>

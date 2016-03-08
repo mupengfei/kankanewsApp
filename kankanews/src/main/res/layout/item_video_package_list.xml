@@ -3,7 +3,7 @@
     android:id="@+id/conlums_item_root_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/new_item_bg_selector"
+    android:background="@drawable/bg_new_item_selector"
     android:orientation="vertical"
     android:paddingTop="@dimen/margin_base_space" >
 
@@ -20,7 +20,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginLeft="@dimen/margin_base_space"
             android:scaleType="fitXY"
-            android:src="@drawable/default_news_display" />
+            android:src="@drawable/img_default_display" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
             android:gravity="center"
             android:orientation="vertical" >
 
-            <com.kankan.kankanews.ui.view.MyTextView
+            <com.kankanews.ui.view.TfTextView
                 android:id="@+id/conlums_item_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,9 +56,9 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginTop="4dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/new_icon_looktime" />
+                    android:src="@drawable/ic_looktime" />
 
-                <com.kankan.kankanews.ui.view.MyTextView
+                <com.kankanews.ui.view.TfTextView
                     android:id="@+id/conlums_item_click"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
                     android:orientation="horizontal"
                     android:visibility="gone" >
 
-                    <com.kankan.kankanews.ui.view.MyTextView
+                    <com.kankanews.ui.view.TfTextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="20dip"
@@ -99,7 +99,7 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <com.kankan.kankanews.ui.view.MyTextView
+    <com.kankanews.ui.view.TfTextView
         android:id="@+id/conlums_item_intro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

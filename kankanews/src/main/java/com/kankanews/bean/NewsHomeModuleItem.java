@@ -1,7 +1,5 @@
 package com.kankanews.bean;
 
-import android.inputmethodservice.Keyboard;
-
 import com.kankanews.interfaz.CanSharedObject;
 
 import java.io.Serializable;

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/image_root_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/image_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY" />
+
+        <ImageView
+            android:id="@+id/item_news_home_matrix_item_icon"
+            android:layout_width="35dip"
+            android:layout_height="35dip"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:padding="7.5dip"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_video" />
+    </RelativeLayout>
+
+    <com.kankanews.ui.view.TfTextView
+        android:id="@+id/title_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="2"
+        android:minLines="2"
+        android:paddingBottom="5dip"
+        android:paddingTop="5dip"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+</LinearLayout>

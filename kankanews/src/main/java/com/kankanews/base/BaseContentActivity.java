@@ -205,16 +205,6 @@ public class BaseContentActivity extends BaseActivity implements
     }
 
     @Override
-    public void chage2Day() {
-
-    }
-
-    @Override
-    public void chage2Night() {
-
-    }
-
-    @Override
     public void copy2Clip() {
 
     }

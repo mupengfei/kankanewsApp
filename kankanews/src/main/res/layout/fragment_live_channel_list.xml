@@ -42,7 +42,7 @@
             android:layout_width="40dip"
             android:layout_height="40dip"
             android:indeterminateBehavior="repeat"
-            android:indeterminateDrawable="@drawable/iamge_progress"
+            android:indeterminateDrawable="@drawable/progress_daisy"
             android:indeterminateOnly="true"
             android:visibility="visible" />
     </LinearLayout>

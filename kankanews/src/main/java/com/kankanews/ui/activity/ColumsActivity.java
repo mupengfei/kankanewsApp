@@ -3,6 +3,7 @@ package com.kankanews.ui.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,7 +25,6 @@ import com.kankanews.utils.ImgUtils;
 import com.kankanews.utils.PixelUtil;
 import com.kankanews.utils.TimeUtil;
 import com.lidroid.xutils.exception.DbException;
-import com.umeng.socialize.utils.Log;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

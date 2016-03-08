@@ -1,18 +1,5 @@
 package com.kankanews.ui.activity;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -23,7 +10,6 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
@@ -45,25 +31,28 @@ import com.android.volley.VolleyError;
 import com.iss.view.pulltorefresh.PullToRefreshBase;
 import com.iss.view.pulltorefresh.PullToRefreshBase.Mode;
 import com.iss.view.pulltorefresh.PullToRefreshListView;
-import com.kankan.kankanews.base.BaseActivity;
-import com.kankan.kankanews.base.IA.CrashApplication;
-import com.kankan.kankanews.base.view.SildingFinishLayout;
-import com.kankan.kankanews.bean.New_News_Search;
-import com.kankan.kankanews.bean.NewsHomeModuleItem;
-import com.kankan.kankanews.config.AndroidConfig;
-import com.kankan.kankanews.ui.item.New_Activity_Content_Video;
-import com.kankan.kankanews.ui.item.New_Activity_Content_Web;
-import com.kankan.kankanews.ui.item.NewsContentActivity;
-import com.kankan.kankanews.ui.view.MyTextView;
-import com.kankan.kankanews.utils.ClickUtils;
-import com.kankan.kankanews.utils.CommonUtils;
-import com.kankan.kankanews.utils.FontUtils;
-import com.kankan.kankanews.utils.ImgUtils;
-import com.kankan.kankanews.utils.NetUtils;
-import com.kankan.kankanews.utils.ToastUtils;
+import com.kankanews.base.BaseContentActivity;
+import com.kankanews.bean.NewsHomeModuleItem;
+import com.kankanews.bean.NewsSearch;
+import com.kankanews.config.AndroidConfig;
 import com.kankanews.kankanxinwen.R;
+import com.kankanews.ui.view.TfTextView;
+import com.kankanews.utils.ClickUtils;
+import com.kankanews.utils.CommonUtils;
+import com.kankanews.utils.FontUtils;
+import com.kankanews.utils.ImgUtils;
+import com.kankanews.utils.NetUtils;
 
-public class SearchMainActivity extends BaseActivity implements OnClickListener {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+
+public class SearchMainActivity extends BaseContentActivity implements OnClickListener {
 
 	private NetUtils instance;
 	private EditText searchContent;
@@ -85,7 +74,7 @@ public class SearchMainActivity extends BaseActivity implements OnClickListener 
 	private int curPageNum = 1;
 	private int maxSearchNum = 30;
 
-	private List<New_News_Search> searchList = new LinkedList<New_News_Search>();
+	private List<NewsSearch> searchList = new LinkedList<NewsSearch>();
 
 	private LayoutInflater inflate;
 	private SeachListViewHolder holder;
@@ -109,22 +98,22 @@ public class SearchMainActivity extends BaseActivity implements OnClickListener 
 
 	private class SeachListViewHolder {
 		ImageView titlePic;
-		MyTextView title;
-		MyTextView click;
-		MyTextView newsTime;
+		TfTextView title;
+		TfTextView click;
+		TfTextView newsTime;
 	}
 
 	private class SeachHisListViewHolder {
 		ImageView removeHis;
-		MyTextView hisText;
-		MyTextView cleanHis;
+		TfTextView hisText;
+		TfTextView cleanHis;
 	}
 
 	protected ErrorListener mErrorListener = new ErrorListener() {
 
 		@Override
 		public void onErrorResponse(VolleyError error) {
-			onFailure(error);
+			onErrorResponse(error);
 		}
 	};
 
@@ -143,7 +132,7 @@ public class SearchMainActivity extends BaseActivity implements OnClickListener 
 		// TODO Auto-generated method stub
 
 		super.onCreate(savedInstanceState);
-		this.setContentView(R.layout.search_main_activity);
+		this.setContentView(R.layout.activity_search_main);
 		// clearHisList();
 	}
 
@@ -151,19 +140,17 @@ public class SearchMainActivity extends BaseActivity implements OnClickListener 
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		if (!spUtil.getIsDayMode())
-			chage2Night();
-		else
-			chage2Day();
+//		if (!mSpUtils.getIsDayMode())
+//			chage2Night();
+//		else
+//			chage2Day();
 		if (FontUtils.isSearchFontSizeHasChanged()) {
 			this.changeFontSize();
 			FontUtils.setSearchFontSizeHasChanged(false);
 		}
 	}
 
-	@Override
 	protected void initListView() {
-		// TODO Auto-generated method stub
 		searchListView.setMode(Mode.PULL_FROM_END);
 
 		// 设置PullRefreshListView上提加载时的加载提示
@@ -487,7 +474,7 @@ public class SearchMainActivity extends BaseActivity implements OnClickListener 
 		public View getView(int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
 			if (convertView == null) {
-				convertView = inflate.inflate(R.layout.search_hot_word_item,
+				convertView = inflate.inflate(R.layout.item_search_hot_word,
 						null);
 				hotWordText = (TextView) convertView
 						.findViewById(R.id.search_hot_word_text);
@@ -554,27 +541,27 @@ public class SearchMainActivity extends BaseActivity implements OnClickListener 
 			int itemViewType = getItemViewType(position);
 			if (convertView == null) {
 				if (itemViewType == 0) {
-					convertView = inflate.inflate(R.layout.search_news_item,
+					convertView = inflate.inflate(R.layout.item_search_news,
 							null);
 					holder = new SeachListViewHolder();
 					holder.titlePic = (ImageView) convertView
 							.findViewById(R.id.home_news_titlepic);
-					holder.title = (MyTextView) convertView
+					holder.title = (TfTextView) convertView
 							.findViewById(R.id.home_news_title);
-					holder.newsTime = (MyTextView) convertView
+					holder.newsTime = (TfTextView) convertView
 							.findViewById(R.id.search_news_newstime);
-					holder.click = (MyTextView) convertView
+					holder.click = (TfTextView) convertView
 							.findViewById(R.id.search_news_click_num);
 					convertView.setTag(holder);
 				} else if (itemViewType == 1) {
 					convertView = inflate.inflate(
-							R.layout.search_his_list_item, null);
+							R.layout.item_search_his_list, null);
 					hisHolder = new SeachHisListViewHolder();
 					hisHolder.removeHis = (ImageView) convertView
 							.findViewById(R.id.search_his_remove);
-					hisHolder.hisText = (MyTextView) convertView
+					hisHolder.hisText = (TfTextView) convertView
 							.findViewById(R.id.search_his_text);
-					hisHolder.cleanHis = (MyTextView) convertView
+					hisHolder.cleanHis = (TfTextView) convertView
 							.findViewById(R.id.search_his_clean);
 					hisHolder.removeHis.setVisibility(View.GONE);
 					hisHolder.hisText.setVisibility(View.GONE);
@@ -594,8 +581,8 @@ public class SearchMainActivity extends BaseActivity implements OnClickListener 
 			if (itemViewType == 0) {
 				FontUtils.setTextViewFontSize(SearchMainActivity.this,
 						holder.title, R.string.home_news_text_size,
-						spUtil.getFontSizeRadix());
-				final New_News_Search news = searchList.get(position);
+						mSpUtils.getFontSizeRadix());
+				final NewsSearch news = searchList.get(position);
 				news.setTitlePic(CommonUtils.doWebpUrl(news.getTitlePic()));
 				ImgUtils.imageLoader.displayImage(news.getTitlePic(),
 						holder.titlePic, ImgUtils.homeImageOptions);
@@ -622,9 +609,9 @@ public class SearchMainActivity extends BaseActivity implements OnClickListener 
 						moduleItem.setTitlepic(news.getTitlePic());
 						moduleItem.setTitleurl(news.getTitleUrl());
 						moduleItem.setType("video");
-						SearchMainActivity.this
-								.startAnimActivityByNewsHomeModuleItem(
-										NewsContentActivity.class, moduleItem);
+//						SearchMainActivity.this
+//								.startAnimActivityByNewsHomeModuleItem(
+//										NewsContentActivity.class, moduleItem);
 						// SearchMainActivity.this.startAnimActivityByParameter(
 						// New_Activity_Content_Video.class,
 						// news.getMId(), news.getType(),
@@ -681,14 +668,14 @@ public class SearchMainActivity extends BaseActivity implements OnClickListener 
 			// TODO Auto-generated method stub
 			final int itemType = getItemViewType(position);
 			if (convertView == null) {
-				convertView = inflate.inflate(R.layout.search_his_list_item,
+				convertView = inflate.inflate(R.layout.item_search_his_list,
 						null);
 				hisHolder = new SeachHisListViewHolder();
 				hisHolder.removeHis = (ImageView) convertView
 						.findViewById(R.id.search_his_remove);
-				hisHolder.hisText = (MyTextView) convertView
+				hisHolder.hisText = (TfTextView) convertView
 						.findViewById(R.id.search_his_text);
-				hisHolder.cleanHis = (MyTextView) convertView
+				hisHolder.cleanHis = (TfTextView) convertView
 						.findViewById(R.id.search_his_clean);
 				if (itemType == 0) {
 					hisHolder.removeHis.setVisibility(View.VISIBLE);
@@ -741,13 +728,13 @@ public class SearchMainActivity extends BaseActivity implements OnClickListener 
 	}
 
 	@Override
-	protected void onSuccess(JSONObject jsonObject) {
+	protected void onSuccessResponse(JSONObject jsonObject) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	protected void onFailure(VolleyError error) {
+	protected void onErrorResponse(VolleyError error) {
 		// TODO Auto-generated method stub
 
 	}
@@ -766,11 +753,10 @@ public class SearchMainActivity extends BaseActivity implements OnClickListener 
 		if (jsonArray.length() == 0)
 			isLoadEnd = true;
 		for (int i = 0; i < jsonArray.length(); i++) {
-			New_News_Search news = new New_News_Search();
+			NewsSearch news = new NewsSearch();
 			try {
 				news.parseJSON((JSONObject) jsonArray.get(i));
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				Log.e("SearchMainActivity", e.getLocalizedMessage());
 			}
 			searchList.add(news);
@@ -857,11 +843,11 @@ public class SearchMainActivity extends BaseActivity implements OnClickListener 
 			buf.deleteCharAt(buf.length() - 1);
 			buf.deleteCharAt(buf.length() - 1);
 		}
-		spUtil.saveSearchHisList(buf.toString());
+		mSpUtils.saveSearchHisList(buf.toString());
 	}
 
 	private void getHisList() {
-		String buf = spUtil.getSearchHisList();
+		String buf = mSpUtils.getSearchHisList();
 		String[] bufArray = buf.split("\\|\\|");
 		searchHisList.clear();
 		for (String ele : bufArray) {
@@ -919,24 +905,6 @@ public class SearchMainActivity extends BaseActivity implements OnClickListener 
 	// return flag;
 	// return super.dispatchTouchEvent(ev);
 	// }
-
-	@Override
-	public void chage2Day() {
-		// TODO Auto-generated method stub
-		nightView.setVisibility(View.GONE);
-	}
-
-	@Override
-	public void chage2Night() {
-		// TODO Auto-generated method stub
-		nightView.setVisibility(View.VISIBLE);
-	}
-
-	@Override
-	public void initNightView(boolean isFullScreen) {
-		if (!spUtil.getIsDayMode())
-			chage2Night();
-	}
 
 	@Override
 	public void changeFontSize() {

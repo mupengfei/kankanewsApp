@@ -76,7 +76,7 @@
             android:textColor="@color/mid_gray"
             android:textSize="12dip" />
 
-        <com.kankan.kankanews.ui.view.MyTextView
+        <com.kankanews.ui.view.TfTextView
             android:id="@+id/live_live_list_detail"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

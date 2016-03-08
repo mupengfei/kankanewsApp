@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white_no_alpha"
+    android:orientation="vertical" >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/separation_line_height"
+        android:background="@color/gray_cc" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/margin_base_space"
+        android:layout_marginRight="@dimen/margin_base_space"
+        android:layout_marginTop="@dimen/margin_base_space" >
+
+        <LinearLayout
+            android:id="@+id/item_news_home_outlink_keyboard_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="end|center_vertical"
+            android:orientation="horizontal" >
+        </LinearLayout>
+
+        <com.kankanews.ui.view.TfTextView
+            android:id="@+id/item_news_home_outlink_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/item_news_home_outlink_keyboard_content"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="17dip"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/item_news_home_outlink_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_base_space"
+        android:scaleType="fitXY" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/separation_line_height"
+        android:background="@color/gray_cc" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dip"
+        android:background="@color/bright_gray" />
+
+</LinearLayout>

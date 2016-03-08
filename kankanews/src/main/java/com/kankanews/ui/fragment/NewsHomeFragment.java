@@ -3,7 +3,6 @@ package com.kankanews.ui.fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -33,6 +32,7 @@ import com.android.volley.VolleyError;
 import com.iss.view.pulltorefresh.PullToRefreshBase;
 import com.iss.view.pulltorefresh.PullToRefreshListView;
 import com.kankanews.base.BaseFragment;
+import com.kankanews.bean.Keyboard;
 import com.kankanews.bean.NewsHome;
 import com.kankanews.bean.NewsHomeModule;
 import com.kankanews.bean.NewsHomeModuleItem;
@@ -41,6 +41,9 @@ import com.kankanews.kankanxinwen.R;
 import com.kankanews.ui.activity.ColumsActivity;
 import com.kankanews.ui.activity.MeSetActivity;
 import com.kankanews.ui.activity.SearchMainActivity;
+import com.kankanews.ui.adapter.RecyclingPagerAdapter;
+import com.kankanews.ui.view.BorderTextView;
+import com.kankanews.ui.view.TfTextView;
 import com.kankanews.ui.view.autoscrollview.AutoScrollViewPager;
 import com.kankanews.ui.view.autoscrollview.VerticalViewPager;
 import com.kankanews.utils.CommonUtils;
@@ -674,9 +677,9 @@ public class NewsHomeFragment extends BaseFragment implements OnClickListener,
                             (int) ((double) (mActivity.mScreenWidth - PixelUtil
                                     .dp2px(12.5f * 2)) * 285 / 600));
                     mMatrixListHolder.img0.setLayoutParams(layoutParams);
-                    mMatrixListHolder.title0 = (MyTextView) convertView
+                    mMatrixListHolder.title0 = (TfTextView) convertView
                             .findViewById(R.id.item_news_home_matrix_list_title0);
-                    mMatrixListHolder.intro0 = (MyTextView) convertView
+                    mMatrixListHolder.intro0 = (TfTextView) convertView
                             .findViewById(R.id.item_news_home_matrix_list_intro0);
                     mMatrixListHolder.rootView1 = convertView
                             .findViewById(R.id.item_news_home_matrix_list_1);
@@ -684,11 +687,11 @@ public class NewsHomeFragment extends BaseFragment implements OnClickListener,
                             .findViewById(R.id.item_news_home_matrix_list_image1);
                     mMatrixListHolder.icon1 = (ImageView) convertView
                             .findViewById(R.id.item_news_home_matrix_list_icon1);
-                    mMatrixListHolder.title1 = (MyTextView) convertView
+                    mMatrixListHolder.title1 = (TfTextView) convertView
                             .findViewById(R.id.item_news_home_matrix_list_title1);
-                    mMatrixListHolder.click1 = (MyTextView) convertView
+                    mMatrixListHolder.click1 = (TfTextView) convertView
                             .findViewById(R.id.item_news_home_matrix_list_click1);
-                    mMatrixListHolder.click2 = (MyTextView) convertView
+                    mMatrixListHolder.click2 = (TfTextView) convertView
                             .findViewById(R.id.item_news_home_matrix_list_click2);
                     mMatrixListHolder.rootView2 = convertView
                             .findViewById(R.id.item_news_home_matrix_list_2);
@@ -696,9 +699,9 @@ public class NewsHomeFragment extends BaseFragment implements OnClickListener,
                             .findViewById(R.id.item_news_home_matrix_list_image2);
                     mMatrixListHolder.icon2 = (ImageView) convertView
                             .findViewById(R.id.item_news_home_matrix_list_icon2);
-                    mMatrixListHolder.title2 = (MyTextView) convertView
+                    mMatrixListHolder.title2 = (TfTextView) convertView
                             .findViewById(R.id.item_news_home_matrix_list_title2);
-                    mMatrixListHolder.click3 = (MyTextView) convertView
+                    mMatrixListHolder.click3 = (TfTextView) convertView
                             .findViewById(R.id.item_news_home_matrix_list_click3);
                     mMatrixListHolder.rootView3 = convertView
                             .findViewById(R.id.item_news_home_matrix_list_3);
@@ -706,7 +709,7 @@ public class NewsHomeFragment extends BaseFragment implements OnClickListener,
                             .findViewById(R.id.item_news_home_matrix_list_image3);
                     mMatrixListHolder.icon3 = (ImageView) convertView
                             .findViewById(R.id.item_news_home_matrix_list_icon3);
-                    mMatrixListHolder.title3 = (MyTextView) convertView
+                    mMatrixListHolder.title3 = (TfTextView) convertView
                             .findViewById(R.id.item_news_home_matrix_list_title3);
                     convertView.setTag(mMatrixListHolder);
                 } else if (itemType == 3) {
@@ -988,9 +991,9 @@ public class NewsHomeFragment extends BaseFragment implements OnClickListener,
                     public void onClick(View v) {
                         // NewsHomeFragment.this.startAnimActivityByAppClassId(
                         // NewsListActivity.class, module.getAppclassid());
-                        NewsHomeFragment.this
-                                .startAnimActivityByNewsHomeModule(
-                                        NewsListActivity.class, module);
+//                        NewsHomeFragment.this
+//                                .startAnimActivityByNewsHomeModule(
+//                                        NewsListActivity.class, module);
                     }
                 });
             } else if (itemType == 2) {
@@ -1110,9 +1113,9 @@ public class NewsHomeFragment extends BaseFragment implements OnClickListener,
                                 // NewsListActivity.class,
                                 // module.getAppclassid());
 
-                                NewsHomeFragment.this
-                                        .startAnimActivityByNewsHomeModule(
-                                                NewsListActivity.class, module);
+//                                NewsHomeFragment.this
+//                                        .startAnimActivityByNewsHomeModule(
+//                                                NewsListActivity.class, module);
                             }
                         });
             } else if (itemType == 3) {
@@ -1168,7 +1171,7 @@ public class NewsHomeFragment extends BaseFragment implements OnClickListener,
                             textLayoutParams.leftMargin = PixelUtil
                                     .dp2px(12.5f);
                         textLayoutParams.rightMargin = PixelUtil.dp2px(12.5f);
-                        MyTextView title = (MyTextView) itemView
+                        TfTextView title = (TfTextView) itemView
                                 .findViewById(R.id.title_item);
                         title.setText(moduleItem.getTitle());
                         title.setLayoutParams(textLayoutParams);
@@ -1179,10 +1182,10 @@ public class NewsHomeFragment extends BaseFragment implements OnClickListener,
                             @Override
                             public void onClick(View v) {
                                 // openNews(moduleItem);
-                                NewsHomeFragment.this
-                                        .startAnimActivityByNewsHomeModuleItem(
-                                                NewsVideoPackageActivity.class,
-                                                moduleItem);
+//                                NewsHomeFragment.this
+//                                        .startAnimActivityByNewsHomeModuleItem(
+//                                                NewsVideoPackageActivity.class,
+//                                                moduleItem);
                             }
                         });
                         mGalleryHolder.rootView.addView(itemView);
@@ -1227,32 +1230,32 @@ public class NewsHomeFragment extends BaseFragment implements OnClickListener,
                         .setOnClickListener(new OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                if (module.getList().get(0).getNum() > 0)
-                                    NewsHomeFragment.this
-                                            .startAnimActivityByNewsHomeModuleItem(
-                                                    NewsTopicActivity.class,
-                                                    module.getList().get(0));
-                                else
-                                    NewsHomeFragment.this
-                                            .startAnimActivityByNewsHomeModuleItem(
-                                                    NewsTopicListActivity.class,
-                                                    module.getList().get(0));
+//                                if (module.getList().get(0).getNum() > 0)
+//                                    NewsHomeFragment.this
+//                                            .startAnimActivityByNewsHomeModuleItem(
+//                                                    NewsTopicActivity.class,
+//                                                    module.getList().get(0));
+//                                else
+//                                    NewsHomeFragment.this
+//                                            .startAnimActivityByNewsHomeModuleItem(
+//                                                    NewsTopicListActivity.class,
+//                                                    module.getList().get(0));
                             }
                         });
                 mTopicTwoHolder.titlePic1
                         .setOnClickListener(new OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                if (module.getList().get(1).getNum() > 0)
-                                    NewsHomeFragment.this
-                                            .startAnimActivityByNewsHomeModuleItem(
-                                                    NewsTopicActivity.class,
-                                                    module.getList().get(1));
-                                else
-                                    NewsHomeFragment.this
-                                            .startAnimActivityByNewsHomeModuleItem(
-                                                    NewsTopicListActivity.class,
-                                                    module.getList().get(1));
+//                                if (module.getList().get(1).getNum() > 0)
+//                                    NewsHomeFragment.this
+//                                            .startAnimActivityByNewsHomeModuleItem(
+//                                                    NewsTopicActivity.class,
+//                                                    module.getList().get(1));
+//                                else
+//                                    NewsHomeFragment.this
+//                                            .startAnimActivityByNewsHomeModuleItem(
+//                                                    NewsTopicListActivity.class,
+//                                                    module.getList().get(1));
                             }
                         });
             } else if (itemType == 6) {
@@ -1311,7 +1314,7 @@ public class NewsHomeFragment extends BaseFragment implements OnClickListener,
                             LinearInterpolator lin = new LinearInterpolator();
                             operatingAnim.setInterpolator(lin);
                             changeIcon.startAnimation(operatingAnim);
-                            netUtils.getNewHomeVoteChange(
+                            mNetUtils.getNewHomeVoteChange(
                                     module.getAppclassid(), module.getId(),
                                     new Listener<JSONObject>() {
                                         @Override
@@ -1369,7 +1372,7 @@ public class NewsHomeFragment extends BaseFragment implements OnClickListener,
 
     private void initVoteView(NewsHomeModule module) {
         mVoteHolder.rootView.removeAllViews();
-        if (spUtil.judgeVoteId(module.getId())) {
+        if (mSpUtils.judgeVoteId(module.getId())) {
             initVoteHasVote(module);
         } else {
             initVoteNoVote(module);
@@ -1436,7 +1439,7 @@ public class NewsHomeFragment extends BaseFragment implements OnClickListener,
                 break;
             final NewsHomeModuleItem item = module.getList().get(i);
             String option = item.getOption();
-            TextView optionView = new MyTextView(mActivity);
+            TextView optionView = new TfTextView(mActivity);
             LinearLayout.LayoutParams optionParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -1452,14 +1455,14 @@ public class NewsHomeFragment extends BaseFragment implements OnClickListener,
             optionView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    netUtils.putVoteAnswer(module.getAppclassid(),
+                    mNetUtils.putVoteAnswer(module.getAppclassid(),
                             module.getId(), item.getId(),
                             new Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject jsonObject) {
                                     Map voteMap = JsonUtils.toMap(jsonObject
                                             .toString());
-                                    spUtil.addVoteId(module.getId());
+                                    mSpUtils.addVoteId(module.getId());
                                     item.setNum(Integer.parseInt(voteMap.get(
                                             "num").toString()));
                                     mNewsHomeListAdapter.notifyDataSetChanged();
@@ -1574,7 +1577,7 @@ public class NewsHomeFragment extends BaseFragment implements OnClickListener,
                             ViewGroup container) {
             final int index = position % itemList.size();
             if (convertView == null) {
-                MyTextView textView = new MyTextView(
+                TfTextView textView = new TfTextView(
                         NewsHomeFragment.this.mActivity);
                 textView.setMaxLines(2);
                 textView.setMinLines(1);
@@ -1586,7 +1589,7 @@ public class NewsHomeFragment extends BaseFragment implements OnClickListener,
                         textView, R.string.home_news_intro_size, 1);
                 convertView = textView;
             } else {
-                ((MyTextView) convertView).setText(itemList.get(index)
+                ((TfTextView) convertView).setText(itemList.get(index)
                         .getTitle());
             }
             convertView.setOnClickListener(new OnClickListener() {
@@ -1628,30 +1631,30 @@ public class NewsHomeFragment extends BaseFragment implements OnClickListener,
     }
 
     private void openNews(NewsHomeModuleItem moduleItem) {
-        if (moduleItem.getType().equals("video")
-                || moduleItem.getType().equals("text")) {
-            this.startAnimActivityByNewsHomeModuleItem(
-                    NewsContentActivity.class, moduleItem);
-        } else if (moduleItem.getType().equals("outlink")) {
-            moduleItem.setOutLinkType("module");// 用来做统计
-            this.startAnimActivityByNewsHomeModuleItem(
-                    NewsOutLinkActivity.class, moduleItem);
-        } else if (moduleItem.getType().equals("album")) {
-            this.startAnimActivityByNewsHomeModuleItem(NewsAlbumActivity.class,
-                    moduleItem);
-        } else if (moduleItem.getType().equals("stream")) {
-            mActivity.touchTab(mActivity.tabLive);
-        } else if (moduleItem.getType().equals("topic")) {
-            if (moduleItem.getAppclassid() == null
-                    || moduleItem.getAppclassid().trim().equals(""))
-                moduleItem.setAppclassid(moduleItem.getLabels());
-            if (moduleItem.getNum() > 0)
-                this.startAnimActivityByNewsHomeModuleItem(
-                        NewsTopicActivity.class, moduleItem);
-            else
-                NewsHomeFragment.this.startAnimActivityByNewsHomeModuleItem(
-                        NewsTopicListActivity.class, moduleItem);
-        }
+//        if (moduleItem.getType().equals("video")
+//                || moduleItem.getType().equals("text")) {
+//            this.startAnimActivityByNewsHomeModuleItem(
+//                    NewsContentActivity.class, moduleItem);
+//        } else if (moduleItem.getType().equals("outlink")) {
+//            moduleItem.setOutLinkType("module");// 用来做统计
+//            this.startAnimActivityByNewsHomeModuleItem(
+//                    NewsOutLinkActivity.class, moduleItem);
+//        } else if (moduleItem.getType().equals("album")) {
+//            this.startAnimActivityByNewsHomeModuleItem(NewsAlbumActivity.class,
+//                    moduleItem);
+//        } else if (moduleItem.getType().equals("stream")) {
+//            mActivity.touchTab(mActivity.tabLive);
+//        } else if (moduleItem.getType().equals("topic")) {
+//            if (moduleItem.getAppclassid() == null
+//                    || moduleItem.getAppclassid().trim().equals(""))
+//                moduleItem.setAppclassid(moduleItem.getLabels());
+//            if (moduleItem.getNum() > 0)
+//                this.startAnimActivityByNewsHomeModuleItem(
+//                        NewsTopicActivity.class, moduleItem);
+//            else
+//                NewsHomeFragment.this.startAnimActivityByNewsHomeModuleItem(
+//                        NewsTopicListActivity.class, moduleItem);
+//        }
     }
 
     private boolean judgeObject() {

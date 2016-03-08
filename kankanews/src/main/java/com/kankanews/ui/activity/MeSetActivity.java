@@ -1,35 +1,22 @@
 package com.kankanews.ui.activity;
 
-import java.io.File;
-import java.util.ArrayList;
-
-import org.json.JSONObject;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
-import com.kankan.kankanews.base.BaseActivity;
-import com.kankan.kankanews.dialog.InfoMsgHint;
-import com.kankan.kankanews.ui.item.New_Activity_MyFoot;
-import com.kankan.kankanews.ui.item.New_Activity_My_About;
-import com.kankan.kankanews.ui.item.New_Activity_My_FanKui;
-import com.kankan.kankanews.ui.item.NewsBrowseRecordActivity;
-import com.kankan.kankanews.utils.CommonUtils;
-import com.kankan.kankanews.utils.FontUtils;
-import com.kankan.kankanews.utils.PixelUtil;
-import com.kankan.kankanews.utils.ToastUtils;
+import com.kankanews.base.BaseContentActivity;
 import com.kankanews.kankanxinwen.R;
+import com.kankanews.ui.popup.InfoMsgHint;
+import com.kankanews.utils.CommonUtils;
+import com.kankanews.utils.FontUtils;
+import com.kankanews.utils.ToastUtils;
 import com.lidroid.xutils.exception.DbException;
 import com.umeng.fb.FeedbackAgent;
 import com.umeng.fb.fragment.FeedbackFragment;
@@ -37,9 +24,15 @@ import com.umeng.update.UmengUpdateAgent;
 import com.umeng.update.UmengUpdateListener;
 import com.umeng.update.UpdateResponse;
 import com.umeng.update.UpdateStatus;
-import com.zcw.togglebutton.ToggleButton;
 
-public class MeSetActivity extends BaseActivity implements OnClickListener {
+import org.json.JSONObject;
+
+import java.io.File;
+import java.util.ArrayList;
+
+//import com.zcw.togglebutton.ToggleButton;
+
+public class MeSetActivity extends BaseContentActivity implements OnClickListener {
 
 	private View inflate;
 
@@ -53,7 +46,7 @@ public class MeSetActivity extends BaseActivity implements OnClickListener {
 	private TextView layout_version;
 	private LinearLayout layout_delete;
 	private TextView layout_detele_now;
-	private ToggleButton isDayMode;
+//	private ToggleButton isDayMode;
 
 	private View scroll_view;
 
@@ -76,7 +69,6 @@ public class MeSetActivity extends BaseActivity implements OnClickListener {
 		// FrameLayout.LayoutParams.MATCH_PARENT, this.mScreenHeight));
 
 		layout_my_foot = (LinearLayout) this.findViewById(R.id.layout_my_foot);
-		nightView = findViewById(R.id.night_view);
 
 //		layout_download = (ToggleButton) this
 //				.findViewById(R.id.layout_download);
@@ -88,9 +80,9 @@ public class MeSetActivity extends BaseActivity implements OnClickListener {
 		layout_delete = (LinearLayout) this.findViewById(R.id.layout_delete);
 		layout_detele_now = (TextView) this
 				.findViewById(R.id.layout_detele_now);
-		isDayMode = (ToggleButton) this.findViewById(R.id.is_day_mode);
+//		isDayMode = (ToggleButton) this.findViewById(R.id.is_day_mode);
 
-		initTitleLeftBar("我", R.drawable.new_ic_back);
+		initTitleLeftBar("我", R.drawable.ic_left_back);
 	}
 
 	@Override
@@ -112,19 +104,18 @@ public class MeSetActivity extends BaseActivity implements OnClickListener {
 		layout_delete.setOnClickListener(this);
 		setOnLeftClickLinester(this);
 
-		isDayMode.setOnToggleChanged(new ToggleButton.OnToggleChanged() {
-
-			@Override
-			public void onToggle(boolean on) {
-				// TODO Auto-generated method stub
-				spUtil.saveIsDayMode(!on);
-				if (on) {
-					chage2Night();
-				} else {
-					chage2Day();
-				}
-			}
-		});
+//		isDayMode.setOnToggleChanged(new ToggleButton.OnToggleChanged() {
+//
+//			@Override
+//			public void onToggle(boolean on) {
+//				mSpUtils.saveIsDayMode(!on);
+////				if (on) {
+////					chage2Night();
+////				} else {
+////					chage2Day();
+////				}
+//			}
+//		});
 //		layout_download.setOnToggleChanged(new ToggleButton.OnToggleChanged() {
 //
 //			@Override
@@ -167,7 +158,6 @@ public class MeSetActivity extends BaseActivity implements OnClickListener {
 		super.onResume();
 		// // 初始化缓存大小
 		initToggle();
-		initNightView(false);
 		float filelength = getFolderSize(CommonUtils.getImageCachePath(this))
 				/ 1024 / 1024
 				+ getFolderSize(CommonUtils.getVideoCachePath(this)) / 1024
@@ -178,27 +168,24 @@ public class MeSetActivity extends BaseActivity implements OnClickListener {
 	}
 
 	@Override
-	protected void onSuccess(JSONObject jsonObject) {
-		// TODO Auto-generated method stub
+	protected void onSuccessResponse(JSONObject jsonObject) {
 
 	}
 
 	@Override
-	protected void onFailure(VolleyError error) {
-		// TODO Auto-generated method stub
+	protected void onErrorResponse(VolleyError error) {
 
 	}
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.layout_my_foot:
-			this.startAnimActivity(NewsBrowseRecordActivity.class);
+//			this.startAnimActivity(NewsBrowseRecordActivity.class);
 			break;
 		case R.id.font_size_set:
 			// mActivity.startAnimActivity(New_Activity_My_About.class);
-			float radix = spUtil.getFontSizeRadix();
+			float radix = mSpUtils.getFontSizeRadix();
 			int index = 1;
 			for (int i = 0; i < FontUtils.fontSize.length; i++) {
 				if (FontUtils.fontSize[i] == radix) {
@@ -214,7 +201,7 @@ public class MeSetActivity extends BaseActivity implements OnClickListener {
 			ad.show();
 			break;
 		case R.id.layout_about:
-			this.startAnimActivity(New_Activity_My_About.class);
+//			this.startAnimActivity(New_Activity_My_About.class);
 			break;
 
 		case R.id.layout_delete:
@@ -223,7 +210,7 @@ public class MeSetActivity extends BaseActivity implements OnClickListener {
 
 		case R.id.layout_fankui:
 			Intent intent = new Intent();
-			intent.setClass(this, New_Activity_My_FanKui.class);
+//			intent.setClass(this, New_Activity_My_FanKui.class);
 			String id = new FeedbackAgent(this).getDefaultConversation()
 					.getId();
 			intent.putExtra(FeedbackFragment.BUNDLE_KEY_CONVERSATION_ID, id);
@@ -265,7 +252,7 @@ public class MeSetActivity extends BaseActivity implements OnClickListener {
 
 				try {
 					String sql = "Update com_kankan_kankanews_bean_New_News set looktime = '0'";
-					MeSetActivity.this.dbUtils.execNonQuery(sql);
+					MeSetActivity.this.mDbUtils.execNonQuery(sql);
 				} catch (DbException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -377,18 +364,18 @@ public class MeSetActivity extends BaseActivity implements OnClickListener {
 			Toast.makeText(MeSetActivity.this,
 					"您已经选择了： " + FontUtils.fontSizeShow[index],
 					Toast.LENGTH_LONG).show();
-			spUtil.saveFontSizeRadix(FontUtils.fontSize[index]);
+			mSpUtils.saveFontSizeRadix(FontUtils.fontSize[index]);
 			FontUtils.chagneFontSizeGlobal();
 			dialog.dismiss();
 		}
 	}
 
 	private void initToggle() {
-		if (this.spUtil.getIsDayMode()) {
-			isDayMode.setToggleOff();
-		} else {
-			isDayMode.setToggleOn();
-		}
+//		if (this.mSpUtils.getIsDayMode()) {
+//			isDayMode.setToggleOff();
+//		} else {
+//			isDayMode.setToggleOn();
+//		}
 //		if (this.spUtil.isFlow()) {
 //			layout_download.setToggleOn();
 //		} else {

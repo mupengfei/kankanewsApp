@@ -4,6 +4,7 @@
     <dimen name="base_action_bar_height">44dip</dimen>
     <dimen name="bottom_bar_real_height">54dip</dimen>
     <dimen name="margin_base_space">12.5dp</dimen>
+    <dimen name="base_action_bar_title_size">20dip</dimen>
 
     <!-- 日历 -->
     <dimen name="padding_10dp">10dp</dimen>
@@ -13,4 +14,11 @@
     <dimen name="calendar_text_medium">18sp</dimen>
     <dimen name="calendar_text_small">14sp</dimen>
 
+
+    <!-- pull_to_refresh -->
+    <dimen name="header_footer_left_right_padding">30.0dip</dimen>
+    <dimen name="header_footer_top_bottom_padding">12.0dip</dimen>
+    <dimen name="indicator_right_padding">10.0dip</dimen>
+    <dimen name="indicator_corner_radius">12.0dip</dimen>
+    <dimen name="indicator_internal_padding">4.0dip</dimen>
 </resources>

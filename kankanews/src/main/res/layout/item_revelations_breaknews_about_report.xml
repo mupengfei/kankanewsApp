@@ -15,9 +15,9 @@
         android:layout_alignParentTop="true"
         android:layout_margin="8dip"
         android:scaleType="fitXY"
-        android:src="@drawable/default_news_display" />
+        android:src="@drawable/img_default_display" />
 
-    <com.kankan.kankanews.ui.view.MyTextView
+    <com.kankanews.ui.view.TfTextView
         android:id="@+id/about_report_news_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

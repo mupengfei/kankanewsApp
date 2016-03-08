@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:src="@drawable/live_video_image"
+            android:src="@drawable/bg_live_video"
             android:visibility="visible" />
 
         <LinearLayout
@@ -105,9 +105,9 @@
                     android:layout_alignParentTop="true"
                     android:paddingLeft="15dip"
                     android:paddingTop="10dip"
-                    android:src="@drawable/full_screen_back" />
+                    android:src="@drawable/ic_full_screen_back" />
 
-                <com.kankan.kankanews.ui.view.MyTextView
+                <com.kankanews.ui.view.TfTextView
                     android:id="@+id/live_content_title"
                     android:layout_width="wrap_content"
                     android:layout_height="50dip"

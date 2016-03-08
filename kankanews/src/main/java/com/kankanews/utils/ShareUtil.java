@@ -1,31 +1,16 @@
 package com.kankanews.utils;
 
 import android.app.Activity;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
-import com.kankanews.base.BaseActivity;
-import com.kankanews.config.AndroidConfig;
 import com.kankanews.interfaz.CanSharedObject;
-import com.umeng.analytics.social.UMSocialService;
-import com.umeng.socialize.bean.SHARE_MEDIA;
-import com.umeng.socialize.bean.StatusCode;
-import com.umeng.socialize.handler.EmailHandler;
-import com.umeng.socialize.handler.QZoneSsoHandler;
-import com.umeng.socialize.handler.SinaSsoHandler;
-import com.umeng.socialize.handler.UMQQSsoHandler;
-import com.umeng.socialize.handler.UMWXHandler;
-import com.umeng.socialize.media.MailShareContent;
-import com.umeng.socialize.media.QQShareContent;
-import com.umeng.socialize.media.SinaShareContent;
-import com.umeng.socialize.media.UMImage;
-import com.umeng.socialize.media.UMVideo;
-import com.umeng.socialize.media.WeiXinShareContent;
+//import com.umeng.analytics.social.UMSocialService;
 
 public class ShareUtil {
 
-	private final UMSocialService mController = UMServiceFactory
-			.getUMSocialService("com.umeng.share");
+//	private final UMSocialService mController = null;
+//	UMServiceFactory
+//			.getUMSocialService("com.umeng.share");
 	public Activity activity;
 	private CanSharedObject shareObj;
 
@@ -34,15 +19,15 @@ public class ShareUtil {
 		this.activity = activity;
 
 		// 关掉默认的提示
-		mController.getConfig().closeToast();
+//		mController.getConfig().closeToast();
 
 		configPlatforms();
 		setShareContent();
 	}
 
-	public UMSocialService getmController() {
-		return mController;
-	}
+//	public UMSocialService getmController() {
+////		return mController;
+////	}
 
 	private Drawable drawable;
 
@@ -53,42 +38,42 @@ public class ShareUtil {
 	/**
 	 * 直接分享，底层可编辑分享接口。如果分享的平台是新浪、腾讯微博、豆瓣、人人，则直接分享，无任何界面弹出； 其它平台分别启动客户端分享</br>
 	 */
-	public void directShare(SHARE_MEDIA mPlatform) {
+//	public void directShare(SHARE_MEDIA mPlatform) {
 
-		mController.getConfig().setPlatforms(SHARE_MEDIA.WEIXIN,
-				SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE,
-				SHARE_MEDIA.SINA, SHARE_MEDIA.TENCENT, SHARE_MEDIA.DOUBAN,
-				SHARE_MEDIA.RENREN);
-
-		mController.postShare(activity, mPlatform, new SnsPostListener() {
-
-			@Override
-			public void onStart() {
-			}
-
-			@Override
-			public void onComplete(SHARE_MEDIA platform, int eCode,
-					SocializeEntity entity) {
-				// String showText = "分享成功";
-				DebugLog.e("分享成功");
-				((BaseActivity) activity).Commit_Share(platform);
-
-				if (platform.equals(SHARE_MEDIA.EMAIL)) {
-					return;
-				}
-
-				if (eCode == StatusCode.ST_CODE_SUCCESSED) {
-					ToastUtils.Infotoast(activity, "分享成功");
-				} else if (eCode == StatusCode.ST_CODE_ERROR_CANCEL) {
-					// ToastUtils.Infotoast(activity, "分享取消");
-				} else {
-					ToastUtils.Infotoast(activity, "分享失败");
-				}
-				// Toast.makeText(activity, showText,
-				// Toast.LENGTH_SHORT).show();
-			}
-		});
-	}
+//		mController.getConfig().setPlatforms(SHARE_MEDIA.WEIXIN,
+//				SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE,
+//				SHARE_MEDIA.SINA, SHARE_MEDIA.TENCENT, SHARE_MEDIA.DOUBAN,
+//				SHARE_MEDIA.RENREN);
+//
+//		mController.postShare(activity, mPlatform, new SnsPostListener() {
+//
+//			@Override
+//			public void onStart() {
+//			}
+//
+//			@Override
+//			public void onComplete(SHARE_MEDIA platform, int eCode,
+//					SocializeEntity entity) {
+//				// String showText = "分享成功";
+//				DebugLog.e("分享成功");
+//				((BaseActivity) activity).Commit_Share(platform);
+//
+//				if (platform.equals(SHARE_MEDIA.EMAIL)) {
+//					return;
+//				}
+//
+//				if (eCode == StatusCode.ST_CODE_SUCCESSED) {
+//					ToastUtils.Infotoast(activity, "分享成功");
+//				} else if (eCode == StatusCode.ST_CODE_ERROR_CANCEL) {
+//					// ToastUtils.Infotoast(activity, "分享取消");
+//				} else {
+//					ToastUtils.Infotoast(activity, "分享失败");
+//				}
+//				// Toast.makeText(activity, showText,
+//				// Toast.LENGTH_SHORT).show();
+//			}
+//		});
+//	}
 
 	/**
 	 * 根据不同的平台设置不同的分享内容</br>
@@ -96,7 +81,7 @@ public class ShareUtil {
 	private void setShareContent() {
 
 		// 配置SSO
-		mController.getConfig().setSsoHandler(new SinaSsoHandler());
+//		mController.getConfig().setSsoHandler(new SinaSsoHandler());
 		// mController.getConfig().setSsoHandler(new TencentWBSsoHandler());
 
 		// QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(activity,
@@ -107,108 +92,108 @@ public class ShareUtil {
 		// UMImage localImage = new UMImage(activity,(
 		// (BitmapDrawable)drawable).getBitmap());
 		// UMImage SharePic = new UMImage(activity, content_News.getTitlepic());
-		UMImage titlePic = null;
-		if (null == shareObj.getSharedPic()
-				|| "".equals(shareObj.getSharedPic().trim())) {
-			titlePic = new UMImage(activity, AndroidConfig.Shared_Icon);
-		} else {
-			titlePic = new UMImage(activity, shareObj.getSharedPic());
-		}
+//		UMImage titlePic = null;
+//		if (null == shareObj.getSharedPic()
+//				|| "".equals(shareObj.getSharedPic().trim())) {
+//			titlePic = new UMImage(activity, AndroidConfig.Shared_Icon);
+//		} else {
+//			titlePic = new UMImage(activity, shareObj.getSharedPic());
+//		}
 		// UMImage resImage = new UMImage(activity, R.drawable.icon);
 
-		String sharedUrl = handleUrl(shareObj.getTitleurl());
-
-		String sharedIntro = (shareObj.getShareIntro() == null || shareObj
-				.getShareIntro().trim().equals("")) ? shareObj.getShareTitle()
-				: shareObj.getShareIntro();
-
-		// 视频分享
-		UMVideo video = new UMVideo(shareObj.getTitleurl());
-		video.setMediaUrl(shareObj.getTitleurl());
-		video.setThumb(shareObj.getTitleurl());
-		video.setTargetUrl(shareObj.getTitleurl());
-		video.setTitle(shareObj.getTitle());
-		video.setThumb(titlePic);
+//		String sharedUrl = handleUrl(shareObj.getTitleurl());
+//
+//		String sharedIntro = (shareObj.getShareIntro() == null || shareObj
+//				.getShareIntro().trim().equals("")) ? shareObj.getShareTitle()
+//				: shareObj.getShareIntro();
+//
+//		// 视频分享
+//		UMVideo video = new UMVideo(shareObj.getTitleurl());
+//		video.setMediaUrl(shareObj.getTitleurl());
+//		video.setThumb(shareObj.getTitleurl());
+//		video.setTargetUrl(shareObj.getTitleurl());
+//		video.setTitle(shareObj.getTitle());
+//		video.setThumb(titlePic);
 
 		// 微信
-		WeiXinShareContent weixinContent = new WeiXinShareContent();
-		// weixinContent.setShareContent(shareObj.getTitle() == null ? shareObj
-		// .getTitlelist() : shareObj.getTitle());
-		weixinContent.setShareContent(sharedIntro == null ? shareObj.getTitle()
-				: sharedIntro);
-		weixinContent.setTitle(shareObj.getShareTitle());
-		weixinContent.setTargetUrl(sharedUrl);
-		weixinContent.setShareMedia(titlePic);
-		mController.setShareMedia(weixinContent);
-
-		// 设置朋友圈分享的内容
-		CircleShareContent circleMedia = new CircleShareContent();
-		circleMedia.setShareContent(sharedIntro);
-		circleMedia.setTitle(shareObj.getShareTitle());
-		circleMedia.setShareImage(titlePic);
-		// circleMedia.setShareMedia(uMusic);
-		// circleMedia.setShareMedia(video);
-		circleMedia.setTargetUrl(sharedUrl);
-		mController.setShareMedia(circleMedia);
-
-		// 设置QQ空间分享内容
-		// QZoneShareContent qzone = new QZoneShareContent();
-		// qzone.setShareContent(content_News.getM_url());
-		// // qzone.setTargetUrl("http://www.umeng.com/social");
-		// qzone.setTitle(content_News.getTitle());
-		// qzone.setShareImage(SharePic);
-		// mController.setShareMedia(qzone);
-
-		// video.setThumb(new UMImage(activity, BitmapFactory.decodeResource(
-		// activity.getResources(), R.drawable.ic_launcher)));
-
-		// 设置qq分享内容
-		QQShareContent qqShareContent = new QQShareContent();
-		qqShareContent.setShareContent(sharedIntro);
-		qqShareContent.setTitle(shareObj.getShareTitle());
-		qqShareContent.setShareImage(titlePic);
-		// qqShareContent.setShareMusic(uMusic);
-		// qqShareContent.setShareVideo(video);
-		qqShareContent.setTargetUrl(sharedUrl);
-		mController.setShareMedia(qqShareContent);
-
-		// 视频分享
-		// UMVideo umVideo = new UMVideo(
-		// "http://v.youku.com/v_show/id_XNTc0ODM4OTM2.html");
-		// umVideo.setThumb("http://www.umeng.com/images/pic/home/social/img-1.png");
-		// umVideo.setTitle("友盟社会化组件视频");
-
-		// 腾讯微博
-		// TencentWbShareContent tencent = new TencentWbShareContent();
-		// tencent.setShareContent("来自友盟社会化组件（SDK）让移动应用快速整合社交分享功能，腾讯微博");
-		// // 设置tencent分享内容
-		// mController.setShareMedia(tencent);
-
-		// 设置邮件分享内容， 如果需要分享图片则只支持本地图片
-		MailShareContent mail = new MailShareContent();
-		if (drawable != null) {
-			UMImage maillocalImage = new UMImage(activity,
-					((BitmapDrawable) drawable).getBitmap());
-			mail.setShareImage(maillocalImage);
-		}
-		// UMImage maillocalImage = new
-		// UMImage(activity,R.drawable.ic_launcher);
-		mail.setTitle(shareObj.getShareTitle());
-		mail.setShareContent(sharedUrl);
-		// 设置tencent分享内容
-		mController.setShareMedia(mail);
-
-		// sina
-		SinaShareContent sinaContent = new SinaShareContent(titlePic);
-		// sinaContent.setShareMedia(video);
-		sinaContent.setShareImage(titlePic);
-		// sinaContent.setShareImage(new UMImage(activity,
-		// "http://static.statickksmg.com/image/2015/05/07/ad7b6608ed69b909356b605db8924891.jpg"));
-		// TODO
-		sinaContent.setShareContent("分享看看新闻：《" + shareObj.getShareTitle() + "》 " + sharedUrl
-				+ " @看看新闻网");
-		mController.setShareMedia(sinaContent);
-	}
+//		WeiXinShareContent weixinContent = new WeiXinShareContent();
+//		// weixinContent.setShareContent(shareObj.getTitle() == null ? shareObj
+//		// .getTitlelist() : shareObj.getTitle());
+//		weixinContent.setShareContent(sharedIntro == null ? shareObj.getTitle()
+//				: sharedIntro);
+//		weixinContent.setTitle(shareObj.getShareTitle());
+//		weixinContent.setTargetUrl(sharedUrl);
+//		weixinContent.setShareMedia(titlePic);
+//		mController.setShareMedia(weixinContent);
+//
+//		// 设置朋友圈分享的内容
+//		CircleShareContent circleMedia = new CircleShareContent();
+//		circleMedia.setShareContent(sharedIntro);
+//		circleMedia.setTitle(shareObj.getShareTitle());
+//		circleMedia.setShareImage(titlePic);
+//		// circleMedia.setShareMedia(uMusic);
+//		// circleMedia.setShareMedia(video);
+//		circleMedia.setTargetUrl(sharedUrl);
+//		mController.setShareMedia(circleMedia);
+//
+//		// 设置QQ空间分享内容
+//		// QZoneShareContent qzone = new QZoneShareContent();
+//		// qzone.setShareContent(content_News.getM_url());
+//		// // qzone.setTargetUrl("http://www.umeng.com/social");
+//		// qzone.setTitle(content_News.getTitle());
+//		// qzone.setShareImage(SharePic);
+//		// mController.setShareMedia(qzone);
+//
+//		// video.setThumb(new UMImage(activity, BitmapFactory.decodeResource(
+//		// activity.getResources(), R.drawable.ic_launcher)));
+//
+//		// 设置qq分享内容
+//		QQShareContent qqShareContent = new QQShareContent();
+//		qqShareContent.setShareContent(sharedIntro);
+//		qqShareContent.setTitle(shareObj.getShareTitle());
+//		qqShareContent.setShareImage(titlePic);
+//		// qqShareContent.setShareMusic(uMusic);
+//		// qqShareContent.setShareVideo(video);
+//		qqShareContent.setTargetUrl(sharedUrl);
+//		mController.setShareMedia(qqShareContent);
+//
+//		// 视频分享
+//		// UMVideo umVideo = new UMVideo(
+//		// "http://v.youku.com/v_show/id_XNTc0ODM4OTM2.html");
+//		// umVideo.setThumb("http://www.umeng.com/images/pic/home/social/img-1.png");
+//		// umVideo.setTitle("友盟社会化组件视频");
+//
+//		// 腾讯微博
+//		// TencentWbShareContent tencent = new TencentWbShareContent();
+//		// tencent.setShareContent("来自友盟社会化组件（SDK）让移动应用快速整合社交分享功能，腾讯微博");
+//		// // 设置tencent分享内容
+//		// mController.setShareMedia(tencent);
+//
+//		// 设置邮件分享内容， 如果需要分享图片则只支持本地图片
+//		MailShareContent mail = new MailShareContent();
+//		if (drawable != null) {
+//			UMImage maillocalImage = new UMImage(activity,
+//					((BitmapDrawable) drawable).getBitmap());
+//			mail.setShareImage(maillocalImage);
+//		}
+//		// UMImage maillocalImage = new
+//		// UMImage(activity,R.drawable.ic_launcher);
+//		mail.setTitle(shareObj.getShareTitle());
+//		mail.setShareContent(sharedUrl);
+//		// 设置tencent分享内容
+//		mController.setShareMedia(mail);
+//
+//		// sina
+//		SinaShareContent sinaContent = new SinaShareContent(titlePic);
+//		// sinaContent.setShareMedia(video);
+//		sinaContent.setShareImage(titlePic);
+//		// sinaContent.setShareImage(new UMImage(activity,
+//		// "http://static.statickksmg.com/image/2015/05/07/ad7b6608ed69b909356b605db8924891.jpg"));
+//		// TODO
+//		sinaContent.setShareContent("分享看看新闻：《" + shareObj.getShareTitle() + "》 " + sharedUrl
+//				+ " @看看新闻网");
+//		mController.setShareMedia(sinaContent);
+//	}
 
 	/**
 	 * 添加所有的平台</br>
@@ -234,11 +219,11 @@ public class ShareUtil {
 	// mController.openShare(activity, false);
 	// }
 
-	private String handleUrl(String srcUrl) {
-		if (srcUrl.contains("?")) {
-			return srcUrl + "&utm_source=kankanapp";
-		}
-		return srcUrl + "?utm_source=kankanapp";
+//	private String handleUrl(String srcUrl) {
+//		if (srcUrl.contains("?")) {
+//			return srcUrl + "&utm_source=kankanapp";
+//		}
+//		return srcUrl + "?utm_source=kankanapp";
 	}
 
 	/**
@@ -246,7 +231,7 @@ public class ShareUtil {
 	 */
 	private void configPlatforms() {
 		// 添加新浪SSO授权
-		mController.getConfig().setSsoHandler(new SinaSsoHandler());
+//		mController.getConfig().setSsoHandler(new SinaSsoHandler());
 		// 添加腾讯微博SSO授权
 		// mController.getConfig().setSsoHandler(new TencentWBSsoHandler());
 		// 添加人人网SSO授权
@@ -275,15 +260,15 @@ public class ShareUtil {
 		String appId = "1103880827";
 		String appKey = "y99xCuBUAIJ0IB8x";
 		// 添加QQ支持, 并且设置QQ分享内容的target url
-		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(activity, appId,
-				appKey);
-		// qqSsoHandler.setTargetUrl("http://www.umeng.com");
-		qqSsoHandler.addToSocialSDK();
-
-		// 添加QZone平台
-		QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(activity, appId,
-				appKey);
-		qZoneSsoHandler.addToSocialSDK();
+//		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(activity, appId,
+//				appKey);
+//		// qqSsoHandler.setTargetUrl("http://www.umeng.com");
+//		qqSsoHandler.addToSocialSDK();
+//
+//		// 添加QZone平台
+//		QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(activity, appId,
+//				appKey);
+//		qZoneSsoHandler.addToSocialSDK();
 
 		// 添加email
 	}
@@ -298,14 +283,14 @@ public class ShareUtil {
 		String appId = "wx3f0cb92ed4db29b6";
 		String appSecret = "4ead2f0961bd6952570453d03562200e";
 		// 添加微信平台
-		UMWXHandler wxHandler = new UMWXHandler(activity, appId, appSecret);
-		wxHandler.addToSocialSDK();
-
-		// 支持微信朋友圈
-		UMWXHandler wxCircleHandler = new UMWXHandler(activity, appId,
-				appSecret);
-		wxCircleHandler.setToCircle(true);
-		wxCircleHandler.addToSocialSDK();
+//		UMWXHandler wxHandler = new UMWXHandler(activity, appId, appSecret);
+//		wxHandler.addToSocialSDK();
+//
+//		// 支持微信朋友圈
+//		UMWXHandler wxCircleHandler = new UMWXHandler(activity, appId,
+//				appSecret);
+//		wxCircleHandler.setToCircle(true);
+//		wxCircleHandler.addToSocialSDK();
 	}
 
 	/**
@@ -313,37 +298,37 @@ public class ShareUtil {
 	 */
 	private void addEmail() {
 		// 添加email
-		EmailHandler emailHandler = new EmailHandler();
-		emailHandler.addToSocialSDK();
+//		EmailHandler emailHandler = new EmailHandler();
+//		emailHandler.addToSocialSDK();
 	}
 
 	/*
 	 * 一键分享
 	 */
 	public void shareOnKey() {
-		mController.getConfig().setPlatforms(SHARE_MEDIA.WEIXIN,
-				SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.SINA,
-				SHARE_MEDIA.EMAIL);
-		// mController.openShare(activity, false);
-
-		mController.openShare(activity, new SnsPostListener() {
-			@Override
-			public void onStart() {
-
-			}
-
-			@Override
-			public void onComplete(SHARE_MEDIA platform, int eCode,
-					SocializeEntity entity) {
-				// String name = platform.name();
-				// String showText = "分享成功";
-				if (eCode != StatusCode.ST_CODE_SUCCESSED) {
-					// showText = "分享失败 [" + eCode + "]";
-				}
-				// Toast.makeText(activity, showText,
-				// Toast.LENGTH_SHORT).show();
-			}
-		});
+//		mController.getConfig().setPlatforms(SHARE_MEDIA.WEIXIN,
+//				SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.SINA,
+//				SHARE_MEDIA.EMAIL);
+//		// mController.openShare(activity, false);
+//
+//		mController.openShare(activity, new SnsPostListener() {
+//			@Override
+//			public void onStart() {
+//
+//			}
+//
+//			@Override
+//			public void onComplete(SHARE_MEDIA platform, int eCode,
+//					SocializeEntity entity) {
+//				// String name = platform.name();
+//				// String showText = "分享成功";
+//				if (eCode != StatusCode.ST_CODE_SUCCESSED) {
+//					// showText = "分享失败 [" + eCode + "]";
+//				}
+//				// Toast.makeText(activity, showText,
+//				// Toast.LENGTH_SHORT).show();
+//			}
+//		});
 	}
 
 }

@@ -784,10 +784,10 @@ public class RevelationsActivityDetailActivity extends BaseContentActivity imple
 			changeFontSize();
 			FontUtils.setRevelationsActivityFontSizeHasChanged(false);
 		}
-		if (!mSpUtils.getIsDayMode())
-			chage2Night();
-		else
-			chage2Day();
+//		if (!mSpUtils.getIsDayMode())
+//			chage2Night();
+//		else
+//			chage2Day();
 	}
 
 	@Override

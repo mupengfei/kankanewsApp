@@ -52,4 +52,60 @@
         <item name="android:windowExitAnimation">@anim/share_borad_hide</item>
     </style>
 
+    <!-- 设置分割线 -->
+    <style name="new_set_item_Line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">#f6f6f6</item>
+    </style>
+
+    <!-- 设置布局 -->
+    <style name="set_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingLeft">20dp</item>
+    </style>
+
+    <!-- 设置布局 -->
+    <style name="set_layout_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!-- 设置右侧布局  图片 -->
+    <style name="set_layout_right_image">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+    </style>
+
+    <!-- 设置右侧布局  文字 -->
+    <style name="set_layout_right_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">#adadad</item>
+    </style>
+
+    <!-- 设置分割线 -->
+    <style name="under_line_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/gray_cc</item>
+    </style>
+
+    <!-- 设置左侧布局 -->
+    <style name="set_layout_left_text">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
 </resources>

@@ -1,9 +1,10 @@
 package com.kankanews.bean;
 
+import com.kankanews.interfaz.CanSharedObject;
+
 import java.io.Serializable;
 import java.util.List;
 
-import com.kankan.kankanews.bean.interfaz.CanSharedObject;
 
 public class NewsHomeModule implements Serializable, CanSharedObject {
 	private String appclassid;

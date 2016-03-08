@@ -1,24 +1,14 @@
 package com.kankanews.ui.activity;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-
-import org.json.JSONObject;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnLayoutChangeListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
@@ -30,47 +20,40 @@ import android.widget.TextView;
 
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
-import com.google.gson.reflect.TypeToken;
 import com.iss.view.pulltorefresh.PullToRefreshBase;
 import com.iss.view.pulltorefresh.PullToRefreshBase.Mode;
 import com.iss.view.pulltorefresh.PullToRefreshListView;
-import com.kankan.kankanews.base.BaseActivity;
-import com.kankan.kankanews.bean.Keyboard;
-import com.kankan.kankanews.bean.New_News_Home;
-import com.kankan.kankanews.bean.NewsHomeModuleItem;
-import com.kankan.kankanews.bean.RevelationsActicityObjBreakNewsList;
-import com.kankan.kankanews.bean.RevelationsBreaknews;
-import com.kankan.kankanews.bean.RevelationsHomeList;
-import com.kankan.kankanews.bean.RevelationsNew;
-import com.kankan.kankanews.bean.SerializableObj;
-import com.kankan.kankanews.ui.fragment.New_LivePlayFragment;
-import com.kankan.kankanews.ui.fragment.New_RevelationsFragment;
-import com.kankan.kankanews.ui.item.New_Activity_Content_PicSet;
-import com.kankan.kankanews.ui.item.New_Activity_Content_Video;
-import com.kankan.kankanews.ui.item.New_Activity_Content_Web;
-import com.kankan.kankanews.ui.item.New_Avtivity_Subject;
-import com.kankan.kankanews.ui.item.NewsAlbumActivity;
-import com.kankan.kankanews.ui.item.NewsContentActivity;
-import com.kankan.kankanews.ui.item.NewsOutLinkActivity;
-import com.kankan.kankanews.ui.view.BorderTextView;
-import com.kankan.kankanews.ui.view.EllipsizingTextView;
-import com.kankan.kankanews.ui.view.EllipsizingTextView.EllipsizeListener;
-import com.kankan.kankanews.ui.view.MyTextView;
-import com.kankan.kankanews.utils.CommonUtils;
-import com.kankan.kankanews.utils.DebugLog;
-import com.kankan.kankanews.utils.FontUtils;
-import com.kankan.kankanews.utils.ImgUtils;
-import com.kankan.kankanews.utils.JsonUtils;
-import com.kankan.kankanews.utils.PixelUtil;
-import com.kankan.kankanews.utils.StringUtils;
-import com.kankan.kankanews.utils.TimeUtil;
-import com.kankan.kankanews.utils.ToastUtils;
+import com.kankanews.base.BaseContentActivity;
+import com.kankanews.bean.Keyboard;
+import com.kankanews.bean.RevelationsActicityObjBreakNewsList;
+import com.kankanews.bean.RevelationsBreaknews;
+import com.kankanews.bean.RevelationsNew;
+import com.kankanews.bean.SerializableObj;
 import com.kankanews.kankanxinwen.R;
+import com.kankanews.ui.view.BorderTextView;
+import com.kankanews.ui.view.EllipsizingTextView;
+import com.kankanews.ui.view.TfTextView;
+import com.kankanews.utils.CommonUtils;
+import com.kankanews.utils.DebugLog;
+import com.kankanews.utils.FontUtils;
+import com.kankanews.utils.ImgUtils;
+import com.kankanews.utils.JsonUtils;
+import com.kankanews.utils.PixelUtil;
+import com.kankanews.utils.StringUtils;
+import com.kankanews.utils.TimeUtil;
+import com.kankanews.utils.ToastUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.db.sqlite.WhereBuilder;
 import com.lidroid.xutils.exception.DbException;
 
-public class RevelationsBreakNewsMoreActivity extends BaseActivity implements
+import org.json.JSONObject;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+
+public class RevelationsBreakNewsMoreActivity extends BaseContentActivity implements
 		OnClickListener {
 	private LayoutInflater inflate;
 	private View retryView;
@@ -103,7 +86,7 @@ public class RevelationsBreakNewsMoreActivity extends BaseActivity implements
 		// TODO Auto-generated method stub
 		isLoadEnd = false;
 		if (CommonUtils.isNetworkAvailable(this)) {
-			this.netUtils.getRevelationsBreaknewsMore("", this.mListener,
+			this.mNetUtils.getRevelationsBreaknewsMore("", this.mSuccessListener,
 					mErrorListener);
 		} else {
 			new Handler().postDelayed(new Runnable() {
@@ -118,13 +101,12 @@ public class RevelationsBreakNewsMoreActivity extends BaseActivity implements
 	@Override
 	protected void initView() {
 		// TODO Auto-generated method stub
-		initTitleLeftBar("报料", R.drawable.new_ic_back);
+		initTitleLeftBar("报料", R.drawable.ic_left_back);
 		inflate = LayoutInflater.from(this);
 		loadingView = this.findViewById(R.id.breaknews_loading_view);
 		retryView = this.findViewById(R.id.breaknews_retry_view);
 		breaknewsListView = (PullToRefreshListView) this
 				.findViewById(R.id.breaknews_list_view);
-		nightView = findViewById(R.id.night_view);
 		initListView();
 	}
 
@@ -198,7 +180,7 @@ public class RevelationsBreakNewsMoreActivity extends BaseActivity implements
 		}
 		List<RevelationsBreaknews> breaknews = this.revelationsActivityList
 				.getBreaknews();
-		this.netUtils.getRevelationsBreaknewsMore(
+		this.mNetUtils.getRevelationsBreaknewsMore(
 				breaknews.get(breaknews.size() - 1).getNewstime(),
 				new Listener<JSONObject>() {
 					@Override
@@ -241,7 +223,7 @@ public class RevelationsBreakNewsMoreActivity extends BaseActivity implements
 	}
 
 	@Override
-	protected void onSuccess(JSONObject jsonObject) {
+	protected void onSuccessResponse(JSONObject jsonObject) {
 		// TODO Auto-generated method stub
 		revelationsActivityListJson = jsonObject.toString();
 		boolean needRefresh = (revelationsActivityList == null);
@@ -271,7 +253,7 @@ public class RevelationsBreakNewsMoreActivity extends BaseActivity implements
 	}
 
 	@Override
-	protected void onFailure(VolleyError error) {
+	protected void onErrorResponse(VolleyError error) {
 		// TODO Auto-generated method stub
 		ToastUtils.Errortoast(this, "获取活动详情失败");
 		loadingView.setVisibility(View.GONE);
@@ -283,17 +265,17 @@ public class RevelationsBreakNewsMoreActivity extends BaseActivity implements
 
 	private class ActivityListTopHolder {
 		ImageView activityImageView;
-		MyTextView activityTitle;
-		MyTextView activityIntro;
+		TfTextView activityTitle;
+		TfTextView activityIntro;
 	}
 
 	private class RevelationsBreaksListNewsHolder {
 		RelativeLayout moreContent;
 		LinearLayout keyboardIconContent;
 		LinearLayout aboutReportContent;
-		MyTextView phoneNumText;
+		TfTextView phoneNumText;
 		EllipsizingTextView newsText;
-		MyTextView allNewsTextBut;
+		TfTextView allNewsTextBut;
 		GridView newsImageGridView;
 		ListView aboutReportListView;
 		ImageView aboutReportIcon;
@@ -301,12 +283,12 @@ public class RevelationsBreakNewsMoreActivity extends BaseActivity implements
 	}
 
 	private class LoadedFinishHolder {
-		MyTextView loadedTextView;
+		TfTextView loadedTextView;
 	}
 
 	private class BreaknewsAboutReportHolder {
 		ImageView newsTitilePic;
-		MyTextView newsTitile;
+		TfTextView newsTitile;
 	}
 
 	private class BreaknewsListAdapter extends BaseAdapter {
@@ -355,11 +337,11 @@ public class RevelationsBreakNewsMoreActivity extends BaseActivity implements
 						.findViewById(R.id.revelations_breaknews_more_content);
 				newsHolder.keyboardIconContent = (LinearLayout) convertView
 						.findViewById(R.id.revelations_breaknews_keyboard_icon_content);
-				newsHolder.phoneNumText = (MyTextView) convertView
+				newsHolder.phoneNumText = (TfTextView) convertView
 						.findViewById(R.id.revelations_breaknews_phonenum);
 				newsHolder.newsText = (EllipsizingTextView) convertView
 						.findViewById(R.id.revelations_breaknews_newstext);
-				newsHolder.allNewsTextBut = (MyTextView) convertView
+				newsHolder.allNewsTextBut = (TfTextView) convertView
 						.findViewById(R.id.revelations_breaknews_alltext_but);
 				newsHolder.newsImageGridView = (GridView) convertView
 						.findViewById(R.id.revelations_breaknews_image_grid);
@@ -376,7 +358,7 @@ public class RevelationsBreakNewsMoreActivity extends BaseActivity implements
 				convertView = inflate.inflate(R.layout.item_list_foot_text,
 						null);
 				finishHolder = new LoadedFinishHolder();
-				finishHolder.loadedTextView = (MyTextView) convertView
+				finishHolder.loadedTextView = (TfTextView) convertView
 						.findViewById(R.id.list_has_loaded_item_textview);
 				convertView.setTag(finishHolder);
 			}
@@ -410,11 +392,11 @@ public class RevelationsBreakNewsMoreActivity extends BaseActivity implements
 				FontUtils.setTextViewFontSize(
 						RevelationsBreakNewsMoreActivity.this,
 						newsHolder.newsText, R.string.home_news_text_size,
-						spUtil.getFontSizeRadix());
+						mSpUtils.getFontSizeRadix());
 				newsHolder.allNewsTextBut.setTag(newsHolder.newsText);
 				newsHolder.newsText.setTag(newsHolder.allNewsTextBut);
 				newsHolder.newsText
-						.addEllipsizeListener(new EllipsizeListener() {
+						.addEllipsizeListener(new EllipsizingTextView.EllipsizeListener() {
 
 							@Override
 							public void ellipsizeStateChanged(
@@ -422,7 +404,7 @@ public class RevelationsBreakNewsMoreActivity extends BaseActivity implements
 									EllipsizingTextView textView) {
 								LinearLayout parent = (LinearLayout) (textView
 										.getParent());
-								MyTextView allBut = (MyTextView) parent
+								TfTextView allBut = (TfTextView) parent
 										.findViewById(R.id.revelations_breaknews_alltext_but);
 								if (!ellipsized && textView.getMaxLines() == 3)
 									allBut.setVisibility(View.GONE);
@@ -440,13 +422,13 @@ public class RevelationsBreakNewsMoreActivity extends BaseActivity implements
 										.findViewById(R.id.revelations_breaknews_newstext);
 								if (textView.getMaxLines() == 3) {
 									textView.setMaxLines(100);
-									((MyTextView) v).setText("收起");
-									((MyTextView) v).postInvalidate();
+									((TfTextView) v).setText("收起");
+									((TfTextView) v).postInvalidate();
 									isShowSetTextView.add(position);
 								} else {
 									textView.setMaxLines(3);
-									((MyTextView) v).setText("全文");
-									((MyTextView) v).postInvalidate();
+									((TfTextView) v).setText("全文");
+									((TfTextView) v).postInvalidate();
 									isShowSetTextView.remove(position);
 								}
 								breaknewsListAdapter.notifyDataSetChanged();
@@ -665,7 +647,7 @@ public class RevelationsBreakNewsMoreActivity extends BaseActivity implements
 				aboutReportHolder = new BreaknewsAboutReportHolder();
 				aboutReportHolder.newsTitilePic = (ImageView) convertView
 						.findViewById(R.id.about_report_news_titlepic);
-				aboutReportHolder.newsTitile = (MyTextView) convertView
+				aboutReportHolder.newsTitile = (TfTextView) convertView
 						.findViewById(R.id.about_report_news_title);
 				convertView.setTag(aboutReportHolder);
 			} else {
@@ -682,7 +664,7 @@ public class RevelationsBreakNewsMoreActivity extends BaseActivity implements
 					RevelationsBreakNewsMoreActivity.this,
 					aboutReportHolder.newsTitile,
 					R.string.revelations_aboutreport_news_text_size,
-					spUtil.getFontSizeRadix());
+					mSpUtils.getFontSizeRadix());
 			convertView.setOnClickListener(new OnClickListener() {
 
 				@Override
@@ -697,29 +679,29 @@ public class RevelationsBreakNewsMoreActivity extends BaseActivity implements
 
 	private void openNews(RevelationsNew news) {
 		//
-		final int news_type = Integer.valueOf(news.getType());
-		NewsHomeModuleItem moduleItem = new NewsHomeModuleItem();
-		moduleItem.setId(news.getMid());
-		moduleItem.setO_cmsid(news.getMid());
-		moduleItem.setAppclassid(news.getZtid());
-		moduleItem.setTitle(news.getTitle());
-		moduleItem.setTitlepic(news.getTitlepic());
-		moduleItem.setTitleurl(news.getTitleurl());
-		if (news_type % 10 == 1) {
-			moduleItem.setType("video");
-			this.startAnimActivityByNewsHomeModuleItem(
-					NewsContentActivity.class, moduleItem);
-		} else if (news_type % 10 == 2) {
-			moduleItem.setType("album");
-			this.startAnimActivityByNewsHomeModuleItem(NewsAlbumActivity.class,
-					moduleItem);
-		} else if (news_type % 10 == 5) {
-			return;
-		} else {
-			moduleItem.setType("text");
-			this.startAnimActivityByNewsHomeModuleItem(
-					NewsContentActivity.class, moduleItem);
-		}
+//		final int news_type = Integer.valueOf(news.getType());
+//		NewsHomeModuleItem moduleItem = new NewsHomeModuleItem();
+//		moduleItem.setId(news.getMid());
+//		moduleItem.setO_cmsid(news.getMid());
+//		moduleItem.setAppclassid(news.getZtid());
+//		moduleItem.setTitle(news.getTitle());
+//		moduleItem.setTitlepic(news.getTitlepic());
+//		moduleItem.setTitleurl(news.getTitleurl());
+//		if (news_type % 10 == 1) {
+//			moduleItem.setType("video");
+//			this.startAnimActivityByNewsHomeModuleItem(
+//					NewsContentActivity.class, moduleItem);
+//		} else if (news_type % 10 == 2) {
+//			moduleItem.setType("album");
+//			this.startAnimActivityByNewsHomeModuleItem(NewsAlbumActivity.class,
+//					moduleItem);
+//		} else if (news_type % 10 == 5) {
+//			return;
+//		} else {
+//			moduleItem.setType("text");
+//			this.startAnimActivityByNewsHomeModuleItem(
+//					NewsContentActivity.class, moduleItem);
+//		}
 	}
 
 	@Override
@@ -730,10 +712,10 @@ public class RevelationsBreakNewsMoreActivity extends BaseActivity implements
 			changeFontSize();
 			FontUtils.setRevelationsBreaknewsFontSizeHasChanged(false);
 		}
-		if (!spUtil.getIsDayMode())
-			chage2Night();
-		else
-			chage2Day();
+//		if (!mSpUtils.getIsDayMode())
+//			chage2Night();
+//		else
+//			chage2Day();
 	}
 
 	@Override
@@ -747,7 +729,7 @@ public class RevelationsBreakNewsMoreActivity extends BaseActivity implements
 	@Override
 	protected boolean initLocalData() {
 		try {
-			SerializableObj object = (SerializableObj) this.dbUtils
+			SerializableObj object = (SerializableObj) this.mDbUtils
 					.findFirst(Selector.from(SerializableObj.class).where(
 							"classType", "=", "RevelationsBreakNewsMoreList"));
 			if (object != null) {
@@ -771,9 +753,9 @@ public class RevelationsBreakNewsMoreActivity extends BaseActivity implements
 			SerializableObj obj = new SerializableObj(UUID.randomUUID()
 					.toString(), revelationsActivityListJson,
 					"RevelationsBreakNewsMoreList");
-			this.dbUtils.delete(SerializableObj.class, WhereBuilder.b(
+			this.mDbUtils.delete(SerializableObj.class, WhereBuilder.b(
 					"classType", "=", "RevelationsBreakNewsMoreList"));
-			this.dbUtils.save(obj);
+			this.mDbUtils.save(obj);
 		} catch (DbException e) {
 			DebugLog.e(e.getLocalizedMessage());
 		}

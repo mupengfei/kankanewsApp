@@ -23,11 +23,11 @@
         android:layout_height="@dimen/base_action_bar_height"
         android:layout_alignParentBottom="true" >
 
-        <com.kankan.kankanews.ui.view.MyTextView
+        <com.kankanews.ui.view.TfTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="3dip"
-            android:background="@drawable/revelations_post_button_shape"
+            android:background="@drawable/bd_revelations_post_button"
             android:gravity="center"
             android:text="我要参与"
             android:textColor="@color/white"
@@ -64,7 +64,7 @@
             android:layout_width="40dip"
             android:layout_height="40dip"
             android:indeterminateBehavior="repeat"
-            android:indeterminateDrawable="@drawable/iamge_progress"
+            android:indeterminateDrawable="@drawable/progress_daisy"
             android:indeterminateOnly="true"
             android:visibility="visible" />
     </LinearLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tc="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -54,7 +55,7 @@
                     android:id="@+id/revelations_post_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/revelations_post_content_edittext_shape"
+                    android:background="@drawable/bd_revelations_post_content_edittext"
                     android:gravity="left|top"
                     android:hint="请输入报料内容，300字内"
                     android:inputType="textMultiLine"
@@ -87,26 +88,26 @@
                 android:layout_marginTop="8dp"
                 android:textSize="16dp" />
 
-            <com.kankan.kankanews.ui.view.NestingGridView
+            <com.kankanews.ui.view.NestingGridView
                 android:id="@+id/revelations_post_image_grid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_base_space"
-                android:background="@drawable/revelations_post_content_edittext_shape"
+                android:background="@drawable/bd_revelations_post_content_edittext"
                 android:horizontalSpacing="10dip"
                 android:numColumns="5"
                 android:padding="10dip"
                 android:scrollbars="none"
                 android:verticalSpacing="10dip"
                 android:visibility="gone" >
-            </com.kankan.kankanews.ui.view.NestingGridView>
+            </com.kankanews.ui.view.NestingGridView>
 
             <RelativeLayout
                 android:id="@+id/revelations_post_video_layout"
                 android:layout_width="match_parent"
                 android:layout_height="100dip"
                 android:layout_margin="@dimen/margin_base_space"
-                android:background="@drawable/revelations_post_content_edittext_shape"
+                android:background="@drawable/bd_revelations_post_content_edittext"
                 android:padding="10dip"
                 android:visibility="gone" >
 
@@ -116,7 +117,7 @@
                     android:layout_height="80dip"
                     android:layout_gravity="center"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/revelations_add_pic" />
+                    android:src="@drawable/ic_revelations_add_pic" />
 
                 <TextView
                     android:id="@+id/post_video_but"
@@ -146,7 +147,7 @@
                     android:layout_marginLeft="-20dip"
                     android:layout_toRightOf="@+id/post_video_item"
                     android:scaleType="fitXY"
-                    android:src="@drawable/close_red"
+                    android:src="@drawable/ic_close_red"
                     android:visibility="gone" />
             </RelativeLayout>
 
@@ -170,7 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_base_space"
                     android:layout_weight="3"
-                    android:background="@drawable/revelations_post_content_edittext_shape"
+                    android:background="@drawable/bd_revelations_post_content_edittext"
                     android:gravity="left|top"
                     android:maxLength="11"
                     android:padding="10dp"
@@ -184,7 +185,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="@dimen/margin_base_space"
                     android:layout_weight="1"
-                    android:background="@drawable/revelations_post_button_shape"
+                    android:background="@drawable/bd_revelations_post_button"
                     android:gravity="center"
                     android:text="取消绑定"
                     android:textColor="@color/white"
@@ -229,7 +230,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_base_space"
-                android:background="@drawable/revelations_post_content_edittext_shape"
+                android:background="@drawable/bd_revelations_post_content_edittext"
                 android:gravity="left|top"
                 android:hint="请输入您的手机号，方便我们记者联系您"
                 android:inputType="phone"
@@ -250,7 +251,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_base_space"
                     android:layout_weight="1"
-                    android:background="@drawable/revelations_post_content_edittext_shape"
+                    android:background="@drawable/bd_revelations_post_content_edittext"
                     android:gravity="left|top"
                     android:hint="请输入验证码"
                     android:inputType="number"
@@ -259,13 +260,13 @@
                     android:singleLine="true"
                     android:textSize="16dp" />
 
-                <com.kankan.kankanews.ui.view.MyTextView
+                <com.kankanews.ui.view.TfTextView
                     android:id="@+id/revelations_post_validate_button"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_margin="@dimen/margin_base_space"
                     android:layout_weight="1"
-                    android:background="@drawable/revelations_post_button_shape"
+                    android:background="@drawable/bd_revelations_post_button"
                     android:gravity="center"
                     android:text="获取验证码"
                     android:textColor="@color/white"
@@ -279,12 +280,12 @@
         android:layout_height="60dip"
         android:layout_alignParentBottom="true" >
 
-        <com.kankan.kankanews.ui.view.MyTextView
+        <com.kankanews.ui.view.TfTextView
             android:id="@+id/revelations_post_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="3dip"
-            android:background="@drawable/revelations_post_button_shape"
+            android:background="@drawable/bd_revelations_post_button"
             android:gravity="center"
             android:text="下一步"
             android:textColor="@color/white"

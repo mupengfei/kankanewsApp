@@ -27,7 +27,7 @@
             android:layout_toRightOf="@+id/live_channel_list_titlepic"
             android:orientation="vertical" >
 
-            <com.kankan.kankanews.ui.view.MyTextView
+            <com.kankanews.ui.view.TfTextView
                 android:id="@+id/live_channel_list_livetitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
                 android:textSize="18dip"
                 android:textStyle="bold" />
 
-            <com.kankan.kankanews.ui.view.MyTextView
+            <com.kankanews.ui.view.TfTextView
                 android:id="@+id/live_channel_list_next_info"
                 android:layout_width="match_parent"
                 android:layout_height="20dip"

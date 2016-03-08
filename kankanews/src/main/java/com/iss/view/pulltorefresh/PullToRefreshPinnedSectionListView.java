@@ -29,8 +29,8 @@ import android.widget.ListView;
 
 import com.iss.view.pulltorefresh.internal.EmptyViewMethodAccessor;
 import com.iss.view.pulltorefresh.internal.LoadingLayout;
-import com.kankan.kankanews.ui.view.PinnedSectionListView;
 import com.kankanews.kankanxinwen.R;
+import com.kankanews.ui.view.PinnedSectionListView;
 
 public class PullToRefreshPinnedSectionListView extends
 		PullToRefreshAdapterViewBase<ListView> {

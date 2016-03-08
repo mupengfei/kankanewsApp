@@ -13,7 +13,7 @@ import com.kankanews.utils.NetUtils;
 import com.kankanews.utils.SharePreferenceUtils;
 import com.lidroid.xutils.DbUtils;
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.socialize.bean.SHARE_MEDIA;
+//import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import org.json.JSONObject;
 
@@ -204,8 +204,8 @@ public abstract class BaseActivity extends FragmentActivity {
     public void refresh() {
     }
 
-    public void Commit_Share(SHARE_MEDIA platform) {
-    }
+//    public void Commit_Share(SHARE_MEDIA platform) {
+//    }
 
     public void shareReBack() {
     }

@@ -23,7 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public abstract class BaseFragment extends Fragment {
-    public SharePreferenceUtils mSpUtil;
+    public SharePreferenceUtils mSpUtils;
 
     protected KankanewsApplication mApplication;
     public MainActivity mActivity;
@@ -48,7 +48,7 @@ public abstract class BaseFragment extends Fragment {
         mNetUtils = NetUtils.getInstance(mActivity);
         mApplication = KankanewsApplication.getInstance();
         mHandler = new Handler();
-        mSpUtil = this.mActivity.mApplication.getSpUtil();
+        mSpUtils = this.mActivity.mApplication.getSpUtil();
     }
 
     @Override
