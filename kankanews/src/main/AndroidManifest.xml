@@ -181,7 +181,7 @@
         <!-- 目前这个渠道统计功能的报表还未开放。 -->
         <meta-data
             android:name="JPUSH_CHANNEL"
-            android:value="mi" />
+            android:value="${channelID}" />
         <!-- Required. AppKey copied from Portal -->
         <meta-data
             android:name="JPUSH_APPKEY"
@@ -194,7 +194,7 @@
             android:value="7d3e923113983ba0120732497b2dd844" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="mi" />
+            android:value="${channelID}"></meta-data>
 
         <!-- 必须注册  在微博授权，分享微博时候用到 -->
         <activity
