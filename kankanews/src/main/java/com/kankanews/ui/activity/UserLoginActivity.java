@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.kankanews.base.BaseContentActivity;
 import com.kankanews.kankanxinwen.R;
+import com.kankanews.utils.DebugLog;
+import com.kankanews.utils.JsonUtils;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -58,6 +60,8 @@ public class UserLoginActivity extends BaseContentActivity implements View.OnCli
                 mShareAPI.doOauthVerify(this, platform, umAuthListener);
                 break;
             case R.id.weixin_login:
+                platform = SHARE_MEDIA.WEIXIN;
+                mShareAPI.doOauthVerify(this, platform, umAuthListener);
                 break;
         }
     }
@@ -71,6 +75,9 @@ public class UserLoginActivity extends BaseContentActivity implements View.OnCli
     private UMAuthListener umAuthListener = new UMAuthListener() {
         @Override
         public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
+//            mShareAPI.getPlatformInfo(UserLoginActivity.this, platform, umAuthListener);
+            DebugLog.e( JsonUtils.toString(data));
+            mShareAPI.getPlatformInfo(UserLoginActivity.this, platform, umAuthListener2);
             Toast.makeText(getApplicationContext(), "Authorize succeed", Toast.LENGTH_SHORT).show();
         }
 
@@ -82,6 +89,23 @@ public class UserLoginActivity extends BaseContentActivity implements View.OnCli
         @Override
         public void onCancel(SHARE_MEDIA platform, int action) {
             Toast.makeText(getApplicationContext(), "Authorize cancel", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private UMAuthListener umAuthListener2 = new UMAuthListener() {
+        @Override
+        public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+            DebugLog.e(JsonUtils.toString(map));
+            Toast.makeText(getApplicationContext(), "Authorize succeed", Toast.LENGTH_SHORT).show();
+
+        }
+        @Override
+        public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+
+        }
+        @Override
+        public void onCancel(SHARE_MEDIA share_media, int i) {
+
         }
     };
 }

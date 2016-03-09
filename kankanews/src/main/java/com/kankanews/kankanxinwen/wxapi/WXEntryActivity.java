@@ -1,8 +1,6 @@
 package com.kankanews.kankanxinwen.wxapi;
 
 
-//import com.umeng.socialize.weixin.view.WXCallbackActivity;
-
 import com.umeng.socialize.weixin.view.WXCallbackActivity;
 
 /**
