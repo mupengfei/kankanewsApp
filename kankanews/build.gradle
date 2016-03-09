@@ -14,19 +14,22 @@ android {
 	signingConfigs { //gradle assembleRelease  
         /*  
            可以定义多个签名配置项，如下面的myConfig  
-         */  
-        myConfig {  
-            storeFile file("D:\\qianming\\jianghuAPP.keystore")
+         */
+        release {
+            storeFile file("kankanewsAPP.keystore")
             storePassword "kankanjianghu123"  
             keyAlias "kankanjianghu"  
             keyPassword "kankanjianghu123"  
         }  
     }  
     buildTypes {
+        debug {
+            signingConfig signingConfigs.release
+        }
         release {
             minifyEnabled false
             //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.myConfig
+            signingConfig signingConfigs.release
             zipAlignEnabled true
         }
     }
