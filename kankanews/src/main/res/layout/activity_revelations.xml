@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tc="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <include
+        layout="@layout/base_title_bar"
+        android:background="@color/deeper_gray" />
+
+    <ScrollView
+        android:id="@+id/imput_content_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/base_action_bar_height"
+        android:layout_marginTop="@dimen/base_action_bar_height"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:layout_marginTop="10dp"
+                android:text="您的报料或提供的有价值线索，将会由上海电视台的记者尽快处理。请描述清楚您的事件，有图为佳。"
+                android:textSize="12dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/separation_line_height"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="@dimen/margin_base_space"
+                android:background="@color/gray_cc" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="10dp"
+                android:text="报料内容(必填)"
+                android:textSize="16dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_base_space" >
+
+                <EditText
+                    android:id="@+id/revelations_post_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bd_revelations_post_content_edittext"
+                    android:gravity="left|top"
+                    android:hint="请输入报料内容，300字内"
+                    android:inputType="textMultiLine"
+                    android:maxLines="6"
+                    android:minLines="5"
+                    android:paddingBottom="20dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp"
+                    android:singleLine="false" />
+
+                <TextView
+                    android:id="@+id/revelations_post_content_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/revelations_post_content"
+                    android:layout_alignRight="@+id/revelations_post_content"
+                    android:padding="5dp"
+                    android:text="0/300字"
+                    android:textColor="#D6D6D6"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/revelations_post_file_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="8dp"
+                android:textSize="16dp" />
+
+            <com.kankanews.ui.view.NestingGridView
+                android:id="@+id/revelations_post_image_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_base_space"
+                android:background="@drawable/bd_revelations_post_content_edittext"
+                android:horizontalSpacing="10dip"
+                android:numColumns="5"
+                android:padding="10dip"
+                android:scrollbars="none"
+                android:verticalSpacing="10dip"
+                android:visibility="gone" >
+            </com.kankanews.ui.view.NestingGridView>
+
+            <RelativeLayout
+                android:id="@+id/revelations_post_video_layout"
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:layout_margin="@dimen/margin_base_space"
+                android:background="@drawable/bd_revelations_post_content_edittext"
+                android:padding="10dip"
+                android:visibility="gone" >
+
+                <ImageView
+                    android:id="@+id/post_video_item"
+                    android:layout_width="80dip"
+                    android:layout_height="80dip"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_revelations_add_pic" />
+
+                <TextView
+                    android:id="@+id/post_video_but"
+                    android:layout_width="80dip"
+                    android:layout_height="80dip"
+                    android:background="@color/half_alpha_black"
+                    android:gravity="center"
+                    android:text="取消"
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
+
+                <com.kankan.kankanews.ui.view.TasksCompletedView
+                    android:id="@+id/post_video_progress_bar"
+                    android:layout_width="80dip"
+                    android:layout_height="80dip"
+                    android:layout_alignParentLeft="true"
+                    android:visibility="gone"
+                    tc:circleColor="@color/red"
+                    tc:radius="20dip"
+                    tc:ringColor="@color/white"
+                    tc:strokeWidth="5dip" />
+
+                <ImageView
+                    android:id="@+id/post_video_close"
+                    android:layout_width="20dip"
+                    android:layout_height="20dip"
+                    android:layout_marginLeft="-20dip"
+                    android:layout_toRightOf="@+id/post_video_item"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_close_red"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/revelations_binding_telephone_name_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="8dp"
+                android:text="联系电话"
+                android:textSize="16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/revelations_binding_telephone_text_view"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_base_space"
+                    android:layout_weight="3"
+                    android:background="@drawable/bd_revelations_post_content_edittext"
+                    android:gravity="left|top"
+                    android:maxLength="11"
+                    android:padding="10dp"
+                    android:phoneNumber="true"
+                    android:singleLine="true"
+                    android:textSize="16dp" />
+
+                <com.kankanews.ui.view.TfTextView
+                    android:id="@+id/revelations_binding_cancel_button"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/margin_base_space"
+                    android:layout_weight="1"
+                    android:background="@drawable/bd_revelations_post_button"
+                    android:gravity="center"
+                    android:text="取消绑定"
+                    android:textColor="@color/white"
+                    android:textSize="14dip" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/post_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/base_action_bar_height"
+        android:layout_marginTop="@dimen/base_action_bar_height"
+        android:scrollbars="none"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:layout_marginTop="10dp"
+                android:text="为了确保我们的记者能尽快的联系到您，请验证您的手机号，我们会尽快处理您的报料。"
+                android:textSize="12dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/separation_line_height"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="@dimen/margin_base_space"
+                android:background="@color/gray_cc" />
+
+            <EditText
+                android:id="@+id/revelations_post_tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_base_space"
+                android:background="@drawable/bd_revelations_post_content_edittext"
+                android:gravity="left|top"
+                android:hint="请输入您的手机号，方便我们记者联系您"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:padding="10dp"
+                android:phoneNumber="true"
+                android:singleLine="true"
+                android:textSize="16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/revelations_validate_message_text_view"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_base_space"
+                    android:layout_weight="1"
+                    android:background="@drawable/bd_revelations_post_content_edittext"
+                    android:gravity="left|top"
+                    android:hint="请输入验证码"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textSize="16dp" />
+
+                <com.kankanews.ui.view.TfTextView
+                    android:id="@+id/revelations_post_validate_button"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/margin_base_space"
+                    android:layout_weight="1"
+                    android:background="@drawable/bd_revelations_post_button"
+                    android:gravity="center"
+                    android:text="获取验证码"
+                    android:textColor="@color/white"
+                    android:textSize="20dip" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dip"
+        android:layout_alignParentBottom="true" >
+
+        <com.kankanews.ui.view.TfTextView
+            android:id="@+id/revelations_post_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="3dip"
+            android:background="@drawable/bd_revelations_post_button"
+            android:gravity="center"
+            android:text="下一步"
+            android:textColor="@color/white"
+            android:textSize="20dip" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/not_click_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+</RelativeLayout>

@@ -1,0 +1,97 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/main_fragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/appBackground"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menu_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_bar_real_height"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        android:gravity="bottom" >
+
+        <RelativeLayout
+            android:id="@+id/tab_home"
+            android:layout_width="0dip"
+            android:layout_height="@dimen/base_action_bar_height"
+            android:layout_weight="1"
+            android:background="@drawable/bd_tab_home_left_right_item"
+            android:clickable="true"
+            android:onClick="touchTab"
+            android:paddingBottom="4dip"
+            android:paddingTop="4dip" >
+
+            <ImageView
+                android:id="@+id/tab_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dip"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_tab_main_nomal" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/tab_revelate"
+            android:layout_width="0dip"
+            android:layout_height="@dimen/base_action_bar_height"
+            android:layout_weight="1"
+            android:background="@drawable/bd_tab_home_middle_item"
+            android:clickable="true"
+            android:onClick="touchTab"
+            android:paddingBottom="4dip"
+            android:paddingTop="4dip" >
+
+            <ImageView
+                android:id="@id/tab_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dip"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_tab_revelate_nomal" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/tab_live"
+            android:layout_width="0dip"
+            android:layout_height="@dimen/base_action_bar_height"
+            android:layout_weight="1"
+            android:background="@drawable/bd_tab_home_left_right_item"
+            android:clickable="true"
+            android:onClick="touchTab"
+            android:paddingBottom="4dip"
+            android:paddingTop="4dip" >
+
+            <ImageView
+                android:id="@id/tab_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dip"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_tab_live_nomal" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/night_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/night_mask"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/full_screen_guide"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+</RelativeLayout>

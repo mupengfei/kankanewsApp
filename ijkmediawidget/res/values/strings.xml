@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="vitamio_name">Vitamio</string>
+    <string name="vitamio_init_decoders">Initializing decoders…</string>
+    <string name="vitamio_videoview_error_title">无法播放</string>
+    <string name="vitamio_videoview_error_text_invalid_progressive_playback">抱歉，该视频当前无法播放，请稍后重试。</string>
+    <string name="vitamio_videoview_error_text_unknown">抱歉，该视频当前无法播放，请稍后重试。</string>
+    <string name="vitamio_videoview_error_button">确定</string>
+    <string name="mediacontroller_play_pause">Play/Pause</string>
+
+</resources>

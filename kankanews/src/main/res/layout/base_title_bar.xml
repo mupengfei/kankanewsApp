@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/title_bar_view"
+        style="@style/ActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_action_bar_height">
+
+        <ImageView
+            android:id="@+id/title_bar_left_img"
+            android:layout_width="@dimen/base_action_bar_height"
+            android:layout_height="@dimen/base_action_bar_height"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dip"
+            android:paddingRight="20dip" />
+
+        <ImageView
+            android:id="@+id/title_bar_left_img_second"
+            android:layout_width="@dimen/base_action_bar_height"
+            android:layout_height="@dimen/base_action_bar_height"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/title_bar_left_img"
+            android:padding="8dip"
+            android:visibility="gone" />
+
+        <com.kankanews.ui.view.TfTextView
+            android:id="@+id/title_bar_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="65dip"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/base_action_bar_title_size" />
+
+        <ImageView
+            android:id="@+id/title_bar_content_img"
+            android:layout_width="25dip"
+            android:layout_height="@dimen/base_action_bar_height"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/title_bar_right_img"
+            android:layout_width="45dip"
+            android:layout_height="25dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dip"
+            android:paddingRight="10dip" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/title_bar_right_img"
+            android:layout_toRightOf="@id/title_bar_content_img">
+
+            <ImageView
+                android:id="@+id/title_bar_right_second_img"
+                android:layout_width="25dip"
+                android:layout_height="@dimen/base_action_bar_height"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+
+        <com.kankanews.ui.view.TfTextView
+            android:id="@+id/title_bar_right_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:textColor="#000000"
+            android:textSize="15dp"></com.kankanews.ui.view.TfTextView>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,5 @@
+.cproject
+/build
+*.iml
+/bin
+/gen
