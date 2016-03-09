@@ -95,7 +95,7 @@
                 android:textColor="@color/mid_gray"
                 android:textSize="12dip" />
 
-            <com.kankan.kankanews.ui.view.EllipsizingTextView
+            <com.kankanews.ui.view.EllipsizingTextView
                 android:id="@+id/revelations_breaknews_newstext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

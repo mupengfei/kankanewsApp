@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kankanews.kankanxinwen"
     android:versionCode="17"
@@ -44,15 +45,19 @@
             android:name="com.kankanews.ui.activity.StartupActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
+
             <!-- android:theme="@style/AppTheme_s" -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="kkl" />
             </intent-filter>
         </activity>
@@ -62,8 +67,15 @@
             android:exported="false"
             android:hardwareAccelerated="false"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.kankanews.ui.activity.MeSetActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.kankanews.ui.activity.UserLoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"></activity>
         <!-- 分享编辑页 -->
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"
@@ -74,10 +86,11 @@
         <service
             android:name="com.umeng.update.net.DownloadingService"
             android:exported="false"
-            android:process=":DownloadingService"></service>
+            android:process=":DownloadingService" />
+
         <activity
             android:name="com.umeng.update.UpdateDialogActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <!-- Required SDK 核心功能 -->
         <!-- option since 2.0.5 可配置PushService，DaemonService,PushReceiver,AlarmReceiver的android:process参数 将JPush相关组件设置为一个独立进程 -->
@@ -113,6 +126,7 @@
             android:enabled="true">
             <intent-filter android:priority="1000">
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
+
                 <category android:name="com.kankanews.kankanxinwen" />
             </intent-filter>
             <intent-filter>
@@ -143,7 +157,7 @@
         <service
             android:name="cn.jpush.android.service.DownloadService"
             android:enabled="true"
-            android:exported="false"></service>
+            android:exported="false" />
         <!-- Required SDK核心功能 -->
         <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
         <receiver
@@ -174,13 +188,13 @@
             android:value="882923e06b004419282a2928" />
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="54c6f56ffd98c5026e0006a7"></meta-data>
+            android:value="54c6f56ffd98c5026e0006a7" />
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
-            android:value="7d3e923113983ba0120732497b2dd844"></meta-data>
+            android:value="7d3e923113983ba0120732497b2dd844" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="mi"></meta-data>
+            android:value="mi" />
 
         <!-- 必须注册  在微博授权，分享微博时候用到 -->
         <activity
@@ -206,6 +220,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -213,13 +228,14 @@
             android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
             android:configChanges="keyboardHidden|orientation"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
 
         <service
             android:name="com.sina.weibo.sdk.net.DownloadService"
-            android:exported="false"></service>
+            android:exported="false" />
+
         <activity
-            android:name="com.kankanews.kankanxinwen.wxapi.WXEntryActivity"
+            android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"

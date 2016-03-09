@@ -1,5 +1,7 @@
 package com.kankanews.kankanxinwen;
 
 
-public class WBShareActivity  {
+import com.umeng.socialize.media.WBShareCallBackActivity;
+
+public class WBShareActivity extends WBShareCallBackActivity {
 }

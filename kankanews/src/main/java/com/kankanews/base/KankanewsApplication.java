@@ -22,6 +22,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.utils.L;
+import com.umeng.socialize.PlatformConfig;
 
 import java.io.File;
 import java.math.BigInteger;
@@ -90,6 +91,13 @@ public class KankanewsApplication extends Application {
 
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.init(this);
+
+        PlatformConfig.setWeixin("wx3f0cb92ed4db29b6", "4ead2f0961bd6952570453d03562200e");
+        //微信 appid appsecret
+        PlatformConfig.setSinaWeibo("726832296","f187c0a4a06156801378d45e20ba1ca6");
+        //新浪微博 appkey appsecret
+        PlatformConfig.setQQZone("1103880827", "y99xCuBUAIJ0IB8x");
+        // QQ和Qzone appid appkey
     }
 
     public void initDB() {

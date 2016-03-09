@@ -129,7 +129,7 @@
                     android:textColor="@color/white"
                     android:visibility="gone" />
 
-                <com.kankan.kankanews.ui.view.TasksCompletedView
+                <com.kankanews.ui.view.TasksCompletedView
                     android:id="@+id/post_video_progress_bar"
                     android:layout_width="80dip"
                     android:layout_height="80dip"
